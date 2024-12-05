@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_18p7yyb" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.29.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
+  <bpmn:process id="shortage_api" name="own api test" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0767zuy</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Activity_185umsu" name="enter narcotic">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="narcotic_name" label="narcotic" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0767zuy</bpmn:incoming>
+      <bpmn:outgoing>Flow_0v7q1tw</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0767zuy" sourceRef="StartEvent_1" targetRef="Activity_185umsu" />
+    <bpmn:serviceTask id="Activity_1ul6ujs" name="Check article availability">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://5458e500-65d9-43cb-b313-d5c5695d7a4e.deepnoteproject.com/shortage?narcotic=${narcotic_name}</camunda:inputParameter>
+            <camunda:inputParameter name="method">GET</camunda:inputParameter>
+            <camunda:outputParameter name="narcotic_shortage">
+              <camunda:script scriptFormat="JavaScript">object=JSON.parse(response);
+narcotic_shortage=object.shortage;</camunda:script>
+            </camunda:outputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="narcotic">${narcotic_name}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0v7q1tw</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wg25w0</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0v7q1tw" sourceRef="Activity_185umsu" targetRef="Activity_1ul6ujs" />
+    <bpmn:exclusiveGateway id="Gateway_0iqatxk" name="avaiable?">
+      <bpmn:incoming>Flow_0wg25w0</bpmn:incoming>
+      <bpmn:outgoing>Flow_0y8grr4</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0p8z4pn</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Activity_0drxbxk" name="show yes">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="narcotic1" label="shortage?" type="string" defaultValue="There is no shortage" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0y8grr4</bpmn:incoming>
+      <bpmn:outgoing>Flow_1jla7te</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_0kbvswz" name="show no">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="shortage2" label="shortage?" type="string" defaultValue="there is a shortage unfortunately" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0p8z4pn</bpmn:incoming>
+      <bpmn:outgoing>Flow_12mpin3</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_15yzqsy">
+      <bpmn:incoming>Flow_12mpin3</bpmn:incoming>
+      <bpmn:incoming>Flow_1jla7te</bpmn:incoming>
+      <bpmn:outgoing>Flow_1od8e3d</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_12mpin3" sourceRef="Activity_0kbvswz" targetRef="Gateway_15yzqsy" />
+    <bpmn:sequenceFlow id="Flow_1jla7te" sourceRef="Activity_0drxbxk" targetRef="Gateway_15yzqsy" />
+    <bpmn:endEvent id="Event_04k4tz0" name="stop">
+      <bpmn:incoming>Flow_1od8e3d</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1od8e3d" sourceRef="Gateway_15yzqsy" targetRef="Event_04k4tz0" />
+    <bpmn:sequenceFlow id="Flow_0y8grr4" name="yes" sourceRef="Gateway_0iqatxk" targetRef="Activity_0drxbxk">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!narcotic_shortage} </bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0p8z4pn" name="no" sourceRef="Gateway_0iqatxk" targetRef="Activity_0kbvswz">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${narcotic_shortage}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0wg25w0" sourceRef="Activity_1ul6ujs" targetRef="Gateway_0iqatxk" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="shortage_api">
+      <bpmndi:BPMNShape id="Activity_0nx6vdq_di" bpmnElement="Activity_0drxbxk">
+        <dc:Bounds x="800" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_02zdwjh_di" bpmnElement="Activity_0kbvswz">
+        <dc:Bounds x="790" y="310" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_15yzqsy_di" bpmnElement="Gateway_15yzqsy" isMarkerVisible="true">
+        <dc:Bounds x="955" y="215" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_04k4tz0_di" bpmnElement="Event_04k4tz0">
+        <dc:Bounds x="1072" y="222" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1080" y="265" width="21" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="222" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0iqatxk_di" bpmnElement="Gateway_0iqatxk" isMarkerVisible="true">
+        <dc:Bounds x="685" y="215" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="745" y="233" width="48" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0m9fjsg_di" bpmnElement="Activity_1ul6ujs">
+        <dc:Bounds x="410" y="200" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0i3sprn_di" bpmnElement="Activity_185umsu">
+        <dc:Bounds x="240" y="200" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0y8grr4_di" bpmnElement="Flow_0y8grr4">
+        <di:waypoint x="710" y="215" />
+        <di:waypoint x="710" y="120" />
+        <di:waypoint x="800" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="716" y="165" width="18" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0p8z4pn_di" bpmnElement="Flow_0p8z4pn">
+        <di:waypoint x="710" y="265" />
+        <di:waypoint x="710" y="370" />
+        <di:waypoint x="790" y="370" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="719" y="315" width="13" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jla7te_di" bpmnElement="Flow_1jla7te">
+        <di:waypoint x="900" y="120" />
+        <di:waypoint x="980" y="120" />
+        <di:waypoint x="980" y="215" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12mpin3_di" bpmnElement="Flow_12mpin3">
+        <di:waypoint x="890" y="350" />
+        <di:waypoint x="980" y="350" />
+        <di:waypoint x="980" y="265" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1od8e3d_di" bpmnElement="Flow_1od8e3d">
+        <di:waypoint x="1005" y="240" />
+        <di:waypoint x="1072" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0767zuy_di" bpmnElement="Flow_0767zuy">
+        <di:waypoint x="188" y="240" />
+        <di:waypoint x="240" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0v7q1tw_di" bpmnElement="Flow_0v7q1tw">
+        <di:waypoint x="340" y="240" />
+        <di:waypoint x="410" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wg25w0_di" bpmnElement="Flow_0wg25w0">
+        <di:waypoint x="510" y="240" />
+        <di:waypoint x="685" y="240" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
