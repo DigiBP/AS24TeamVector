@@ -1,33 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" 
-             xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" 
-             xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" 
-             xmlns:modeler="http://camunda.org/schema/modeler/1.0" 
-             xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" 
-             id="Definitions_1fhenvg" 
-             name="Medication Reorder Decision" 
-             namespace="http://camunda.org/schema/1.0/dmn" 
-             exporter="Camunda Modeler" 
-             exporterVersion="5.28.0" 
-             modeler:executionPlatform="Camunda Platform" 
-             modeler:executionPlatformVersion="7.22.0">
-  <decision id="MedicationReorderDecision" name="Medication Reorder Decision">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_1fhenvg" name="Medication Reorder Decision" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.28.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
+  <decision id="MedicationReorderDecisionBig" name="Medication Reorder Decision Big">
     <informationRequirement id="InformationRequirement_ThresholdCheck">
-      <requiredInput href="#InputData_CurrentInventory" />
+      <requiredInput href="#InputData_CurrentInventory_Big" />
     </informationRequirement>
     <decisionTable id="DecisionTable_ReorderCheck" hitPolicy="COLLECT">
-      <!-- Input for Current Inventory -->
-      <input id="Input_CurrentInventory">
+      <input id="Input_CurrentInventory" biodi:width="192">
         <inputExpression id="InputExpression_CurrentInventory" typeRef="number">
           <text>currentInventory</text>
         </inputExpression>
       </input>
-      <!-- Output for Reorder Decision -->
+      <input id="InputClause_1v5bsby">
+        <inputExpression id="LiteralExpression_1kt8vna" typeRef="string">
+          <text>InputData_CurrentInventory_Big.Name</text>
+        </inputExpression>
+      </input>
       <output id="Output_Reorder" typeRef="string" />
-      <!-- Rule Definitions -->
       <rule id="Rule_MedicationReorder_1">
         <inputEntry id="InputEntry_1_1">
           <text>&lt; 7</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pf9v2p">
+          <text>"Methadon"</text>
         </inputEntry>
         <outputEntry id="OutputEntry_1">
           <text>"Methadon"</text>
@@ -37,6 +31,9 @@
         <inputEntry id="InputEntry_2_1">
           <text>&lt; 5</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_00xkdjg">
+          <text>"Dormicum"</text>
+        </inputEntry>
         <outputEntry id="OutputEntry_2">
           <text>"Dormicum"</text>
         </outputEntry>
@@ -44,6 +41,9 @@
       <rule id="Rule_MedicationReorder_3">
         <inputEntry id="InputEntry_3_1">
           <text>&lt; 5</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1u6udb5">
+          <text>"Bupaq"</text>
         </inputEntry>
         <outputEntry id="OutputEntry_3">
           <text>"Bupaq"</text>
@@ -53,6 +53,9 @@
         <inputEntry id="InputEntry_4_1">
           <text>&lt; 3</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_0azz5rj">
+          <text>"Esconarkon"</text>
+        </inputEntry>
         <outputEntry id="OutputEntry_4">
           <text>"Esconarkon"</text>
         </outputEntry>
@@ -60,6 +63,9 @@
       <rule id="Rule_MedicationReorder_5">
         <inputEntry id="InputEntry_5_1">
           <text>&lt; 2</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_128zdwd">
+          <text>"Keta-S"</text>
         </inputEntry>
         <outputEntry id="OutputEntry_5">
           <text>"Keta-S"</text>
@@ -69,21 +75,24 @@
         <inputEntry id="InputEntry_6_1">
           <text>&lt; 5</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_0mavfxp">
+          <text>"Propofol"</text>
+        </inputEntry>
         <outputEntry id="OutputEntry_6">
           <text>"Propofol"</text>
         </outputEntry>
       </rule>
     </decisionTable>
   </decision>
-  <inputData id="InputData_CurrentInventory" name="Current Inventory">
+  <inputData id="InputData_CurrentInventory_Big" name="Current Inventory">
     <variable name="currentInventory" typeRef="number" />
   </inputData>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
-      <dmndi:DMNShape dmnElementRef="MedicationReorderDecision">
+      <dmndi:DMNShape dmnElementRef="MedicationReorderDecisionBig">
         <dc:Bounds height="80" width="180" x="160" y="100" />
       </dmndi:DMNShape>
-      <dmndi:DMNShape id="DMNShape_InputInventory" dmnElementRef="InputData_CurrentInventory">
+      <dmndi:DMNShape id="DMNShape_InputInventory" dmnElementRef="InputData_CurrentInventory_Big">
         <dc:Bounds height="45" width="125" x="360" y="200" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_InventoryToDecision" dmnElementRef="InformationRequirement_ThresholdCheck">

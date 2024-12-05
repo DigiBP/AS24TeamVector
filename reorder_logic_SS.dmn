@@ -1,76 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_1fhenvg" name="Medication Reorder Decision" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.28.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
-  <decision id="MedicationReorderDecision" name="Medication Reorder Decision">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_1fhenvg" name="Medication Reorder Decision" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.28.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
+  <decision id="MedicationReorderDecisionSmall" name="Medication Reorder Decision Small">
     <informationRequirement id="InformationRequirement_ThresholdCheck">
-      <requiredInput href="#InputData_CurrentInventory" />
+      <requiredInput href="#InputData_CurrentInventory_Small" />
     </informationRequirement>
     <decisionTable id="DecisionTable_ReorderCheck" hitPolicy="COLLECT">
-      <input id="Input_CurrentInventory">
-        <inputExpression id="InputExpression_CurrentInventory" typeRef="number">
-          <text>currentInventory</text>
+      <input id="Input_CurrentMedication" biodi:width="257">
+        <inputExpression id="InputExpression_CurrentMedication" typeRef="list">
+          <text>InputData_CurrentInventory_Small[quantity &lt; thresholds[Name]].Name</text>
         </inputExpression>
       </input>
       <output id="Output_Reorder" typeRef="string" />
-      <rule id="Rule_MedicationReorder_1">
-        <inputEntry id="InputEntry_1_1">
-          <text>&lt; 2</text>
+      <rule id="Rule_MedicationReorder">
+        <inputEntry id="InputEntry_Filtered">
+          <text>-</text>
         </inputEntry>
-        <outputEntry id="OutputEntry_1">
-          <text>"Methadon"</text>
-        </outputEntry>
-      </rule>
-      <rule id="Rule_MedicationReorder_2">
-        <inputEntry id="InputEntry_2_1">
-          <text>&lt; 1</text>
-        </inputEntry>
-        <outputEntry id="OutputEntry_2">
-          <text>"Dormicum"</text>
-        </outputEntry>
-      </rule>
-      <rule id="Rule_MedicationReorder_3">
-        <inputEntry id="InputEntry_3_1">
-          <text>&lt; 2</text>
-        </inputEntry>
-        <outputEntry id="OutputEntry_3">
-          <text>"Bupaq"</text>
-        </outputEntry>
-      </rule>
-      <rule id="Rule_MedicationReorder_4">
-        <inputEntry id="InputEntry_4_1">
-          <text>&lt; 1</text>
-        </inputEntry>
-        <outputEntry id="OutputEntry_4">
-          <text>"Esconarkon"</text>
-        </outputEntry>
-      </rule>
-      <rule id="Rule_MedicationReorder_5">
-        <inputEntry id="InputEntry_5_1">
-          <text>&lt; 1</text>
-        </inputEntry>
-        <outputEntry id="OutputEntry_5">
-          <text>"Keta-S"</text>
-        </outputEntry>
-      </rule>
-      <rule id="Rule_MedicationReorder_6">
-        <inputEntry id="InputEntry_6_1">
-          <text>&lt; 1</text>
-        </inputEntry>
-        <outputEntry id="OutputEntry_6">
-          <text>"Propofol"</text>
+        <outputEntry id="OutputEntry_MatchingNames">
+          <text>InputData_CurrentInventory_Small[quantity &lt; thresholds[Name]].Name</text>
         </outputEntry>
       </rule>
     </decisionTable>
   </decision>
-  <inputData id="InputData_CurrentInventory" name="Current Inventory">
-    <variable name="currentInventory" typeRef="number" />
+  <inputData id="InputData_CurrentInventory_Small" name="Current Inventory">
+    <variable name="currentInventory" typeRef="list" />
+  </inputData>
+  <inputData id="InputData_Thresholds" name="Thresholds">
+    <variable name="thresholds" typeRef="context" />
   </inputData>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
-      <dmndi:DMNShape dmnElementRef="MedicationReorderDecision">
+      <dmndi:DMNShape dmnElementRef="MedicationReorderDecisionSmall">
         <dc:Bounds height="80" width="180" x="160" y="100" />
       </dmndi:DMNShape>
-      <dmndi:DMNShape id="DMNShape_InputInventory" dmnElementRef="InputData_CurrentInventory">
+      <dmndi:DMNShape id="DMNShape_InputInventory" dmnElementRef="InputData_CurrentInventory_Small">
         <dc:Bounds height="45" width="125" x="360" y="200" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_Thresholds" dmnElementRef="InputData_Thresholds">
+        <dc:Bounds height="45" width="125" x="360" y="300" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_InventoryToDecision" dmnElementRef="InformationRequirement_ThresholdCheck">
         <di:waypoint x="420" y="223" />
