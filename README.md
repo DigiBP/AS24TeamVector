@@ -21,6 +21,8 @@ Twice daily there are countings and comparisons of the usage of narcotics agains
 
 ## Goal
 
+We aim to reduce the amount of paperwork by digitalizing the inventory lists and providing an automated reorderprocess. 
+
 ## AS-IS Process
 
 All is initiated with a new patient's arrival and the evaluation of the veterinarian for the need of narcotics for this individual patient. If it is decided that narcotics are needed (this can include anaesthesia, analgesia and seizure management) the sub process of applying the narcotics to this specific patient is started. A paper form is filled out to document required information and after filling it out the narcotics are taken out and applied to the patient. If a new vial is opened but not used up completely it is either thrown out and documented or stored for later use for the specific patient it got taken out for. 
@@ -28,6 +30,8 @@ Twice a day the list of narcotics used is checked against the stock to ensure ev
 If necessary the small safe is stocked up with narcotics from the big safe and the big safe is evaluated once daily and new narcotics, if needed, are ordered via the supply chain team. 
 
 ## TO BE Process 
+
+For clarification and since it is not relevant for our process optimization the veterinarian is considered as a customer of the inhouse pharmacy and the process is visualized as a black box. 
 
 ## How to run 
 
