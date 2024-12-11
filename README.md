@@ -1,4 +1,4 @@
-# AS24TeamVector
+# Team Vector - Digitalization of narcotics management in an inhouse pharmacy of a veterinary clinic
 
 Passwort for Keepass is password
 
@@ -13,9 +13,13 @@ Andreas Martin
 Charuta Pande
 Devid Montecchiari
 
-## How to run 
-
 ## Introduction
+
+The usage of narcotics in a veterinary clinic requires the implementation of strict rules to prevent potential misuse. Despite clear legal regulation, the implementation of the processes regarding narcotics management can vary greatly between different clinics. The clinic in question handles all related processes manually and there is no automation in existence. Paperwork is not digitalized, there is no clear defined way of communication between different parties and the responsibility for reordering narcotics out of stock is not specified. 
+
+Twice daily there are countings and comparisons of the usage of narcotics against the remaining stock, to prevent misuse. 
+
+## Goal
 
 ## AS-IS Process
 
@@ -23,10 +27,15 @@ All is initiated with a new patient's arrival and the evaluation of the veterina
 Twice a day the list of narcotics used is checked against the stock to ensure everything is tracked accordingly. There are two safes to store narcotics in the clinic. A small safe, which is accessible for the veterinarians on duty to provide patients with narcotics. And a big safe, which is only accessible to the team managing narcotics to stock up the small safe if needed but to further prevent abuse of narcotics. 
 If necessary the small safe is stocked up with narcotics from the big safe and the big safe is evaluated once daily and new narcotics, if needed, are ordered via the supply chain team. 
 
-
 ## TO BE Process 
 
+## How to run 
+
 ## Technologies 
+
+### Architecture 
+
+### Services
 
 ## Digitalization Inventory List 
 
