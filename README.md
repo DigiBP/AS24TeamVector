@@ -49,3 +49,20 @@ For clarification and since it is not relevant for our process optimization the 
 - we can document the work on the decision table and argue that we dropped it if the LLM works and we want to implement that instead 
 
 ## Conclusion 
+🐕
+🐱
+🐴
+🐟
+🦜
+👨‍💻
+👩‍⚕️
+🌟
+🙏
+💊
+🦠
+⚠️
+📄
+💉
+❌
+🔒
+✨
