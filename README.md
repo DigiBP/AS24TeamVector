@@ -19,9 +19,17 @@ Sarah Deckarm - sarah.deckarm@students.fhnw.ch
 ## Coaching 🌟🙏
 
 We would like to thank:
+
+
 Andreas Martin
+
+
 Charuta Pande
+
+
 Devid Montecchiari
+
+
 For their guidance and support throughout this project. The contributions and insights were truly appreciated.
 
 ## Introduction 💊⚠️📄💉❌
