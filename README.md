@@ -31,6 +31,14 @@ All is initiated with a new patient's arrival and the evaluation of the veterina
 Twice a day the list of narcotics used is checked against the stock to ensure everything is tracked accordingly. There are two safes to store narcotics in the clinic. A small safe, which is accessible for the veterinarians on duty to provide patients with narcotics. And a big safe, which is only accessible to the team managing narcotics to stock up the small safe if needed but to further prevent abuse of narcotics. 
 If necessary the small safe is stocked up with narcotics from the big safe and the big safe is evaluated once daily and new narcotics, if needed, are ordered via the supply chain team. 
 
+### Inventory and supply chain (for Sarah) 
+
+Once daily one person from the narcotics team checks the big safes inventory and evaluates with a threshold if an order of new narcotics needs to be placed. The threshold is defined with a great margin to make sure no shortage or delivery difficulties obstruct the availability of the important medications. In case no order needs to be placed the small safe undergoes inventory checking to make sure the veterinarians can access important medications directly and easily. If a narcotic medicament in the small safe falls under a certain threshold it will be restocked from the big safe accordingly. 
+
+When one or more medicament in the big safe falls below the threshold to ensure constant availability in the clinic, an order will be placed. To place the order the member of the narcotics team, who checked stocks in the big safe, informs the purchaising team about the order. The purchaising team then places the order. Upon arrival they will check the order and accept it when no discrepancies are present. 
+The narcotics team is informed about the arrival and fill the ordered medicaments into the big safe. Lastly the have to update the inventory list of the big safe again to match the new stock. 
+
+
 ## TO BE Process 
 
 For clarification and since it is not relevant for our process optimization the veterinarian is considered as a customer of the inhouse pharmacy and the process is visualized as a black box. 
