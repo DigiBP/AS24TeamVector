@@ -54,19 +54,23 @@ The combination of these issues are truly detrimental to the valuable veterinary
 Our vision is to enhance tracking and streamline workflow management, thereby contributing to the efficiency and safety of narcotic management. Implementing an automated system that suggests alternative medications to supply chain managers, ensuring that any shortages are quickly addressed with minimal disruption allows providing the best possible care for the animal patients. 
 
 
-### Current Challenges:
-This problem was addressed in the context of one veterinary clinic, to provide realistic, actionable and viable processes (with possible scaling/generalization to other clinics and/or applications). 
+## Current Challenges🚩
+This problem was addressed in the context of one veterinary clinic, to provide realistic, actionable and viable processes (with possible scaling/generalization to other clinics and/or applications). While this will be described in more detail below, several issues in the current narcotics management are presently highlighted. 
 
+The clinic in question handles all narcotics-related processes manually, with no automation and is exclusively paper based. Stock tracking also occurs manually and is paper-based. There is no automation in repurchasing and stock updates. This manual documentation leads to inefficiencies and potential human error. 
+  
+For validation, twice daily, specialized staff counts the number of remaining narcotics, and does a cross validation on the documented usage of narcotics against the remaining stock-- again, all manually and paper-based. This, again, is highly time consuming and does not provide the possibility of flagging inconsistencies automatically. 
 
-While this will be described in more detail below, several issues in the current narcotics management are presently highlighted. The clinic in question handles all narcotics-related processes manually, with no automation and exclusively paper based. Stock tracking also occurs manually and is paper-based. Twice daily, specialized staff counts the number of remaining narcotics, and does a cross validation on the documented usage of narcotics against the remaining stock. There is no automation in reordering and stock updates. In addition, the responsibilities are not truly clear, with limited communication between different stakeholders in this process. 
+In addition, the responsibilities of the different parties are not truly clear, with limited communication between different stakeholders in this process. These ambiguities in accountability and responsibilities may cause critical issues, for instance in delays in reordering narcotics possibly impacting patient care.
 
 
 ## Goal 🎯✨ 
 In the context of the previously discussed issues and limitations in the narcotic-related processes in the selected veterinary clinic, we aim to reduce the amount of paperwork by digitalizing the inventory lists and providing an automated reordering process. A major advantage is handling the critical tasks of checking inventory and performing calculations to cross-check and flag inconsistencies automatically is that human errors can be eliminated, in addition to significantly speeding up the time required for these administrative tasks.
+
 The vision is to ultimately aid in preventing misuse and to increase efficiency for the specialized veterinary staff- allowing a greater focus on patient care. Moreover, the implementation of automated alternative supports the team in providing the optimal and empathetic care that each animal patient requires. 
 
 
-## AS-IS Process 🚩🔒💊📦
+## AS-IS Process 🔒💊📦
 In the veterinary clinic, there are two safes to store narcotics. The physical location of the safes are very strictly regulated in terms of access, and only limited staff have the rights and possibility to open the safes where the narcotics are stored. A small safe stores the narcotics that can be provided to patients. Additionally, a larger safe, which is only accessible to the team managing narcotics supply, is available to stock up the small safe if needed. This strict dual system provides an additional safe-guard for prevention of narcotics misuse. 
 
 # IMG
