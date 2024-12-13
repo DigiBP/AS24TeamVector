@@ -91,8 +91,11 @@ When one or more narcotics in the big safe falls below the threshold, a process 
 ## Technologies 🔄⚙️📈📧🛠️
 
 •	Camunda
+
 •	Python 
+
 •	Google Forms 
+
 •	(Voiceflow)
 
 
