@@ -1,7 +1,0 @@
-﻿Name,Ingredient,Container,Numbered,LimitedToOneAnimal,LeftoverHandling,quantity,,
-Methadon,Methadon,glass ampoule,TRUE,TRUE,Throw away,25,,
-Dormicum,Midazolam,glass ampoule,TRUE,TRUE,Throw away,15,,
-Bupaq,Buprenorphin,Vial,TRUE,TRUE,Throw away,30,,
-Esconarkon,Pentobarbital,piercing bottle,TRUE,FALSE,No Leftover,10,,
-Keta-S,Ketamin,Vial,FALSE,FALSE,No Leftover,5,,
-Propofol,Propofol,piercing bottle,FALSE,FALSE,BTM Team,10,,

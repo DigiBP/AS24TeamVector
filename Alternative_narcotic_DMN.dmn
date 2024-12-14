@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_1kt8mh6" name="Get Reorder Instruction" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.29.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_1kt8mh6" name="Get Reorder Instruction" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.30.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
   <decision id="GetReorderInstruction" name="Get reorder instruction">
     <informationRequirement id="InformationRequirement_19ljsnw">
       <requiredInput href="#narcotic_name" />
     </informationRequirement>
     <informationRequirement id="InformationRequirement_1v3gaxh">
-      <requiredInput href="#narcotic_available" />
+      <requiredInput href="#narcotic_shortage" />
     </informationRequirement>
     <decisionTable id="DecisionTable_07fpnhs" hitPolicy="FIRST">
       <input id="Input_1">
@@ -15,7 +15,7 @@
       </input>
       <input id="InputClause_17mk10g">
         <inputExpression id="LiteralExpression_0zvwn1c" typeRef="boolean">
-          <text>narcotic_available</text>
+          <text>narcotic_shortage</text>
         </inputExpression>
       </input>
       <output id="Output_1" typeRef="string" />
@@ -24,7 +24,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0cb1g5v">
-          <text>true</text>
+          <text>false</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_133q1gr">
           <text>"Article " + narcotic_name + " is available, please continue with reorder"</text>
@@ -35,7 +35,7 @@
           <text>"Methadon","methadon"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1kw9tke">
-          <text>false</text>
+          <text>true</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_06zl9gv">
           <text>"Article " + narcotic_name + " is currently not available for reorder, please consider one of the following alternatives: Methadon 10mg, Injektionsloesung	Streuli Pharma AG or Methadon 10 mg, Injektionsloesung Sintetica SA. Please make sure to double check dosage and indications."</text>
@@ -46,7 +46,7 @@
           <text>"Dormicum","dormicum","Midazolam","midazolam"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0b5j6bn">
-          <text>false</text>
+          <text>true</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1axeadv">
           <text>"Article " + narcotic_name + " is currently not available for reorder, please consider one of the following alternatives: Dormicum 5 mg/1 mL, Injektionsloesung	CPS Cito Pharma Services GmbH or Dormicum 50 mg/10 mL, Injektionsloesung CPS Cito Pharma Services GmbH or Dormicum 15 mg/3 mL, Injektionsloesung CPS Cito Pharma Services GmbH or Valium 50 mg/10mL, Injektionsloesung Atnahs Pharma Switzerland AG. Please make sure to double check dosage and indications."</text>
@@ -57,7 +57,7 @@
           <text>"Bupaq","bupaq","Buprenorphin","buprenorphin"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1ens1s6">
-          <text>false</text>
+          <text>true</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_13zwxrs">
           <text>"Article " + narcotic_name + " is currently not available for reorder, please consider the following alternative: Bupaq 0.3mg/mL, Injektionsloesung	Streuli Tiergesundheit AG. Please make sure to double check dosage and indications."</text>
@@ -68,7 +68,7 @@
           <text>"Esconarkon","esconarkon"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1558ho3">
-          <text>false</text>
+          <text>true</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1ihxux4">
           <text>"Article " + narcotic_name + " is currently not available for reorder, please consider one of the following alternatives: Pentobarbital 300mg/mL, Injektionsloesung	Streuli Tiergesundheit AG or Euthasol 400mg/mL, Injektionsloesung	Dechra Veterinary Products Suisse GMBH . Please make sure to double check dosage and indications."</text>
@@ -79,7 +79,7 @@
           <text>"Ketamin","ketamin"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1veozoz">
-          <text>false</text>
+          <text>true</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0grt78m">
           <text>"Article " + narcotic_name + " is currently not available for reorder, please consider one of the following alternatives: Ketamin Labatec 50 mg/ml, Injektionsloesung	Labatec Pharma SA or Ketamin Sintetica 50 mg/ml, Injektionsloesung	Sintetica SA. Please make sure to double check dosage and indications."</text>
@@ -90,7 +90,7 @@
           <text>"Propofol","propofol"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_13gna5y">
-          <text>false</text>
+          <text>true</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_02jes6w">
           <text>"Article " + narcotic_name + " is currently not available for reorder, please consider one of the following alternatives: Propofol-Lipuro 10 mg/ml, Injektionsloesung	B. Braun Medical AG Propofol MCT 10 mg/ml, Injektionsloesung	Fresenius Kabi (Schweiz) AG Propofol 10mg/ml, Injektionsloesung	Labatec Pharma SA Propovet 10mg/mL, Injektionsloesung	Zoetis Schweiz GMBH. Please make sure to double check dosage and indications."</text>
@@ -101,7 +101,7 @@
           <text>"Keta-S","Ketas","keta-s","ketas"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0imku7y">
-          <text>false</text>
+          <text>true</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0bpmcue">
           <text>"Article " + narcotic_name + " is currently not available for reorder, please consider one of the following alternatives: Ketamin Labatec 50 mg/ml, Injektionsloesung	Labatec Pharma SA or Ketamin Sintetica 50 mg/ml, Injektionsloesung	Sintetica SA. Please make sure to double check dosage and indications."</text>
@@ -121,7 +121,7 @@
     </decisionTable>
   </decision>
   <inputData id="narcotic_name" name="narcotic_name" />
-  <inputData id="narcotic_available" name="narcotic_available" />
+  <inputData id="narcotic_shortage" name="narcotic_shortage" />
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
       <dmndi:DMNShape dmnElementRef="GetReorderInstruction">
@@ -135,7 +135,7 @@
         <di:waypoint x="220" y="200" />
         <di:waypoint x="220" y="180" />
       </dmndi:DMNEdge>
-      <dmndi:DMNShape id="DMNShape_01uxg1u" dmnElementRef="narcotic_available">
+      <dmndi:DMNShape id="DMNShape_01uxg1u" dmnElementRef="narcotic_shortage">
         <dc:Bounds height="45" width="125" x="427" y="337" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_0eujpc4" dmnElementRef="InformationRequirement_1v3gaxh">
