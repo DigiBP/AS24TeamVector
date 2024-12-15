@@ -91,20 +91,20 @@
         <bpmn:flowNodeRef>Gateway_0cjvk6u</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0lljt8d</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1m9cpir</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_09x02js</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_1xgf5hg</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_0yipkgi</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_1cn0szb</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_02y3o58</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1837t61</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1w71xo1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0c16w0q</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0ryndx8</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0hlx2v6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_09x02js</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1xgf5hg</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0yipkgi</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1cn0szb</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_02y3o58</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1oz1y07" name="purchasing Team">
-        <bpmn:flowNodeRef>Activity_1ekylzz</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0u5j9uj</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1ekylzz</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:dataObjectReference id="DataObjectReference_18nshfh" name="Inventory list small safe" dataObjectRef="DataObject_1ufh79j" />
@@ -354,6 +354,31 @@ try {
       <bpmn:property id="Property_1qclln1" name="__targetRef_placeholder" />
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_02tnemd" sourceRef="Activity_0hlx2v6" targetRef="Gateway_02y3o58" />
+    <bpmn:sequenceFlow id="Flow_1bvwkj9" sourceRef="Activity_0u5j9uj" targetRef="Gateway_0yipkgi" />
+    <bpmn:serviceTask id="Activity_0u5j9uj" name="order arrival notification">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://945152e0-66a8-4b9c-b068-364219c8e551.deepnoteproject.com/send-email</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">{
+  "to_email": "turan.firat4@gmail.com",
+  "subject": "Order arrived",
+  "body": "The orders from the vendors have arrived and are ready to be filled into the big safe. The database has been updated",
+  "from_email": "vectorgroup209@gmail.com"
+}</camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_02m1gzk</bpmn:incoming>
+      <bpmn:outgoing>Flow_1bvwkj9</bpmn:outgoing>
+    </bpmn:serviceTask>
     <bpmn:dataObjectReference id="DataObjectReference_01bqkk3" name="inventory list big safe" dataObjectRef="DataObject_1sqnym5" />
     <bpmn:dataObject id="DataObject_1sqnym5" />
     <bpmn:subProcess id="Activity_1ekylzz">
@@ -431,40 +456,25 @@ narcotic_shortage=object.shortage;</camunda:script>
             <camunda:connectorId>http-connector</camunda:connectorId>
           </camunda:connector>
         </bpmn:extensionElements>
-        <bpmn:incoming>Flow_0jzjzlc</bpmn:incoming>
+        <bpmn:incoming>Flow_1r8m7fr</bpmn:incoming>
         <bpmn:outgoing>Flow_0sbj2ux</bpmn:outgoing>
         <bpmn:dataOutputAssociation id="DataOutputAssociation_0h8s470">
           <bpmn:targetRef>DataObjectReference_01bqkk3</bpmn:targetRef>
         </bpmn:dataOutputAssociation>
       </bpmn:serviceTask>
-      <bpmn:sequenceFlow id="Flow_0jzjzlc" sourceRef="Activity_1ja2toc" targetRef="Activity_1i1rlkq" />
+      <bpmn:sequenceFlow id="Flow_0jzjzlc" sourceRef="Activity_1ja2toc" targetRef="Activity_0ca3pc6" />
       <bpmn:sequenceFlow id="Flow_0sbj2ux" sourceRef="Activity_1i1rlkq" targetRef="Event_0nnrf0l" />
+      <bpmn:userTask id="Activity_0ca3pc6" name="Confirm order arrival">
+        <bpmn:extensionElements>
+          <camunda:formData>
+            <camunda:formField id="showOrderedNarcotic" label="instruction" type="string" defaultValue="If ${narcotic_name.prop(&#39;narcotic&#39;).value()} order has arrived please confirm" />
+          </camunda:formData>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0jzjzlc</bpmn:incoming>
+        <bpmn:outgoing>Flow_1r8m7fr</bpmn:outgoing>
+      </bpmn:userTask>
+      <bpmn:sequenceFlow id="Flow_1r8m7fr" sourceRef="Activity_0ca3pc6" targetRef="Activity_1i1rlkq" />
     </bpmn:subProcess>
-    <bpmn:sequenceFlow id="Flow_1bvwkj9" sourceRef="Activity_0u5j9uj" targetRef="Gateway_0yipkgi" />
-    <bpmn:serviceTask id="Activity_0u5j9uj" name="order arrival notification">
-      <bpmn:extensionElements>
-        <camunda:connector>
-          <camunda:inputOutput>
-            <camunda:inputParameter name="url">https://945152e0-66a8-4b9c-b068-364219c8e551.deepnoteproject.com/send-email</camunda:inputParameter>
-            <camunda:inputParameter name="method">POST</camunda:inputParameter>
-            <camunda:inputParameter name="headers">
-              <camunda:map>
-                <camunda:entry key="Content-Type">application/json</camunda:entry>
-              </camunda:map>
-            </camunda:inputParameter>
-            <camunda:inputParameter name="payload">{
-  "to_email": "turan.firat4@gmail.com",
-  "subject": "Order arrived",
-  "body": "The orders from the vendors have arrived and are ready to be filled into the big safe. The database has been updated",
-  "from_email": "vectorgroup209@gmail.com"
-}</camunda:inputParameter>
-          </camunda:inputOutput>
-          <camunda:connectorId>http-connector</camunda:connectorId>
-        </camunda:connector>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_02m1gzk</bpmn:incoming>
-      <bpmn:outgoing>Flow_1bvwkj9</bpmn:outgoing>
-    </bpmn:serviceTask>
   </bpmn:process>
   <bpmn:process id="Process_0ch1smc" isExecutable="false">
     <bpmn:task id="Activity_1vxjugr" name="Send day list">
@@ -607,11 +617,11 @@ narcotic_shortage=object.shortage;</camunda:script>
         <di:waypoint x="1750" y="840" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="BPMNShape_0vkqy4e" bpmnElement="Participant_0rr3lva" isHorizontal="true">
-        <dc:Bounds x="152" y="960" width="2078" height="970" />
+        <dc:Bounds x="152" y="960" width="2078" height="1110" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_1af48pj" bpmnElement="Lane_1oz1y07" isHorizontal="true">
-        <dc:Bounds x="182" y="1560" width="2048" height="370" />
+        <dc:Bounds x="182" y="1560" width="2048" height="510" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_0m8jrf8" bpmnElement="Lane_03wz4xo" isHorizontal="true">
@@ -678,59 +688,67 @@ narcotic_shortage=object.shortage;</camunda:script>
           <dc:Bounds x="922" y="1175" width="56" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_0kq5pwu" bpmnElement="DataObjectReference_01bqkk3">
-        <dc:Bounds x="512" y="1815" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="491" y="1872" width="79" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_08r2nrd_di" bpmnElement="Activity_0u5j9uj">
         <dc:Bounds x="1720" y="1590" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0kq5pwu" bpmnElement="DataObjectReference_01bqkk3">
+        <dc:Bounds x="342" y="1915" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="321" y="1972" width="79" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1p8tye5_di" bpmnElement="Activity_1ekylzz" isExpanded="true">
-        <dc:Bounds x="670" y="1700" width="1200" height="160" />
+        <dc:Bounds x="670" y="1830" width="1200" height="160" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_0l2aplt" bpmnElement="Activity_1ul6ujs">
-        <dc:Bounds x="805" y="1755" width="100" height="80" />
+        <dc:Bounds x="805" y="1885" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_1wgn6sz" bpmnElement="Activity_0n9mdx2">
-        <dc:Bounds x="945" y="1755" width="100" height="80" />
+        <dc:Bounds x="945" y="1885" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_13el9d6_di" bpmnElement="Event_13el9d6">
-        <dc:Bounds x="697" y="1777" width="36" height="36" />
+        <dc:Bounds x="697" y="1907" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1ioa66t_di" bpmnElement="Activity_1ja2toc">
-        <dc:Bounds x="1120" y="1755" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_1rmblll" bpmnElement="Activity_1i1rlkq">
-        <dc:Bounds x="1320" y="1755" width="100" height="80" />
+        <dc:Bounds x="1120" y="1885" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0nnrf0l_di" bpmnElement="Event_0nnrf0l">
-        <dc:Bounds x="1502" y="1777" width="36" height="36" />
+        <dc:Bounds x="1702" y="1907" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1rmblll" bpmnElement="Activity_1i1rlkq">
+        <dc:Bounds x="1540" y="1885" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0p6eddl" bpmnElement="Activity_0ca3pc6">
+        <dc:Bounds x="1300" y="1885" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_11d5wpv_di" bpmnElement="Flow_11d5wpv">
-        <di:waypoint x="733" y="1795" />
-        <di:waypoint x="805" y="1795" />
+        <di:waypoint x="733" y="1925" />
+        <di:waypoint x="805" y="1925" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1paa2ge_di" bpmnElement="Flow_1paa2ge">
-        <di:waypoint x="905" y="1795" />
-        <di:waypoint x="945" y="1795" />
+        <di:waypoint x="905" y="1925" />
+        <di:waypoint x="945" y="1925" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0vyglz4_di" bpmnElement="Flow_0vyglz4">
-        <di:waypoint x="1045" y="1795" />
-        <di:waypoint x="1120" y="1795" />
+        <di:waypoint x="1045" y="1925" />
+        <di:waypoint x="1120" y="1925" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0jzjzlc_di" bpmnElement="Flow_0jzjzlc">
-        <di:waypoint x="1220" y="1795" />
-        <di:waypoint x="1320" y="1795" />
+        <di:waypoint x="1220" y="1925" />
+        <di:waypoint x="1300" y="1925" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0sbj2ux_di" bpmnElement="Flow_0sbj2ux">
-        <di:waypoint x="1420" y="1795" />
-        <di:waypoint x="1502" y="1795" />
+        <di:waypoint x="1640" y="1925" />
+        <di:waypoint x="1702" y="1925" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1r8m7fr_di" bpmnElement="Flow_1r8m7fr">
+        <di:waypoint x="1400" y="1925" />
+        <di:waypoint x="1540" y="1925" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1qt37aq_di" bpmnElement="Flow_1qt37aq">
         <di:waypoint x="1895" y="1410" />
@@ -749,9 +767,9 @@ narcotic_shortage=object.shortage;</camunda:script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_04xdwex_di" bpmnElement="Flow_04xdwex">
         <di:waypoint x="675" y="1435" />
-        <di:waypoint x="675" y="1701" />
+        <di:waypoint x="675" y="1831" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="671" y="1614" width="18" height="14" />
+          <dc:Bounds x="671" y="1705" width="18" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1oy56al_di" bpmnElement="Flow_1oy56al">
@@ -782,7 +800,7 @@ narcotic_shortage=object.shortage;</camunda:script>
         <di:waypoint x="650" y="1410" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_02m1gzk_di" bpmnElement="Flow_02m1gzk">
-        <di:waypoint x="1770" y="1700" />
+        <di:waypoint x="1770" y="1830" />
         <di:waypoint x="1770" y="1670" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_09pmoap_di" bpmnElement="Flow_09pmoap">
@@ -898,14 +916,14 @@ narcotic_shortage=object.shortage;</camunda:script>
         <di:waypoint x="1158" y="1045" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1h0lmod_di" bpmnElement="DataInputAssociation_1h0lmod">
-        <di:waypoint x="527" y="1815" />
-        <di:waypoint x="483" y="1407" />
+        <di:waypoint x="365" y="1915" />
+        <di:waypoint x="479" y="1370" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_0h8s470_di" bpmnElement="DataOutputAssociation_0h8s470">
-        <di:waypoint x="1370" y="1835" />
-        <di:waypoint x="1370" y="1890" />
-        <di:waypoint x="620" y="1880" />
-        <di:waypoint x="548" y="1852" />
+        <di:waypoint x="1540" y="1913" />
+        <di:waypoint x="1270" y="1850" />
+        <di:waypoint x="610" y="1850" />
+        <di:waypoint x="378" y="1938" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1vv6g9o_di" bpmnElement="Flow_1vv6g9o">
         <di:waypoint x="780" y="230" />
