@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1ro0ysa" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.28.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
   <bpmn:collaboration id="Collaboration_08n0ja5">
-    <bpmn:participant id="Participant_1rxez14" name="BTM control (inventory)" processRef="Process_0e1hb2u" />
-    <bpmn:participant id="Participant_0rr3lva" name="Supply Chain" processRef="BTM_order_process" />
-    <bpmn:participant id="Participant_0ktpxyz" name="Clinic (Out of scope)" processRef="Process_0ch1smc" />
+    <bpmn:participant id="Participant_1rxez14" name="Narcotics control (inventory)" processRef="Process_0e1hb2u" />
+    <bpmn:participant id="Participant_0rr3lva" name="supply chain" processRef="BTM_order_process" />
+    <bpmn:participant id="Participant_0ktpxyz" name="clinic (out of scope)" processRef="Process_0ch1smc" />
     <bpmn:messageFlow id="Flow_1vv6g9o" sourceRef="Activity_1vxjugr" targetRef="Event_01zp73n" />
     <bpmn:messageFlow id="Flow_0c2imaj" sourceRef="Activity_0a90fb6" targetRef="Activity_1ckatbb" />
     <bpmn:messageFlow id="Flow_0rgnij4" sourceRef="Activity_12v9urp" targetRef="Activity_05b0lfb" />
@@ -11,7 +11,7 @@
   </bpmn:collaboration>
   <bpmn:process id="Process_0e1hb2u" isExecutable="false">
     <bpmn:laneSet id="LaneSet_1vsbm3a">
-      <bpmn:lane id="Lane_1pjdx0j" name="BTM Team">
+      <bpmn:lane id="Lane_1pjdx0j" name="narcotics team">
         <bpmn:flowNodeRef>Event_01zp73n</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0ecrgn8</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0h3ngxi</bpmn:flowNodeRef>
@@ -87,16 +87,16 @@
   </bpmn:process>
   <bpmn:process id="BTM_order_process" isExecutable="true">
     <bpmn:laneSet id="LaneSet_0ds1irt">
-      <bpmn:lane id="Lane_03wz4xo" name="BTM Team">
+      <bpmn:lane id="Lane_03wz4xo" name="narcotics team">
         <bpmn:flowNodeRef>Gateway_0cjvk6u</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0lljt8d</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1m9cpir</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0hlx2v6</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_09x02js</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1xgf5hg</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0yipkgi</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1cn0szb</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_02y3o58</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0hlx2v6</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0ryndx8</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0c16w0q</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1w71xo1</bpmn:flowNodeRef>
@@ -106,7 +106,7 @@
         <bpmn:flowNodeRef>Activity_0x0or1a</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_13ta5so</bpmn:flowNodeRef>
       </bpmn:lane>
-      <bpmn:lane id="Lane_1oz1y07" name="purchasing Team">
+      <bpmn:lane id="Lane_1oz1y07" name="purchasing team">
         <bpmn:flowNodeRef>Activity_0u5j9uj</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1ekylzz</bpmn:flowNodeRef>
       </bpmn:lane>
