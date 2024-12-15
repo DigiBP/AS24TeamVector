@@ -74,23 +74,34 @@ The vision is to ultimately aid in preventing misuse and to increase efficiency 
 ## AS-IS Process 🔒💊📦
 In the veterinary clinic, there are two safes to store narcotics. The physical location of the safes are very strictly regulated in terms of access, and only limited staff have the rights and possibility to open the safes where the narcotics are stored. A small safe stores the narcotics that can be provided to patients. Additionally, a larger safe, which is only accessible to the team managing narcotics supply, is available to stock up the small safe if needed. This strict dual system provides an additional safe-guard for prevention of narcotics misuse. 
 
-# IMG
+![AS_IS-subprocess](https://github.com/user-attachments/assets/592747ad-8aee-487c-8e9d-50fb2c4d6e3c)
 
 ### Narcotics administration 
-The as-is process is initiated with a new patient's arrival and the evaluation performed by the veterinarian to assess the need of narcotics for this individual patient. If they decide that narcotics are required, the sub-process of applying the narcotics to this specific patient is started. The veterinarian fills out a paper form to document the required extensive information on the patient, diverse details on the medication, the indication and the individual indicating/dispensing the medication. After the documentation is completed, subsequently the narcotics are removed and are applied to the patient, ending the process. As a side note, If a new vial is opened but not used up completely, it may be stored for later use for the specific patient it got taken out for. 
+The as-is process is initiated with a new patient's arrival, capturing of data by the front staff and the evaluation performed by the veterinarian to assess the need of narcotics for this individual patient. If they decide that narcotics are required, the sub-process of applying the narcotics to this specific patient is started. The veterinarian fills out a paper form to document the required extensive information on the patient, diverse details on the medication, the indication and the individual indicating/dispensing the medication. After the documentation is completed, subsequently the narcotics are removed and are applied to the patient, ending the process. As a side note, if a new vial is opened but not used up completely, it may be stored for later use for the specific patient it got taken out for. 
 
-# IMG
+
+
+![AS_IS-control](https://github.com/user-attachments/assets/ca29fa96-e5cd-418c-80ab-c137268b73af)
+
 
 ### Validation 
-To ensure complete correctness, twice a day, either staff specifically trained in and assigned to narcotics management or veterinaries check the paper documentation of narcotics used, which is then checked against the available stock in the small safe to ensure all entries are valid, there are no discrepancies and everything is tracked correctly. If a discrepancy is discovered an investigation is initiated. This process is highly resource-intensive, stressful, and can be frustrating for all parties involved. It is absolutely imperative that any discrepancies are resolved or adequately explained, as failure to do so could lead to severe legal implications and limitations in practicing rights, among others.
+To ensure complete correctness, twice a day, one designated veterinarian checks the paper documentation of narcotics used. Then, it is checked against the available stock in the small safe to ensure all entries are valid, there are no discrepancies and everything is tracked correctly. If a discrepancy (deviation) is discovered an investigation is initiated. It is absolutely imperative that any discrepancies are resolved or adequately explained. This process is highly resource-intensive, stressful, and can be frustrating for all parties involved. Failure to resolve this could lead to severe legal implications and limitations in practicing rights, among others.
 
-# IMG
+After the discrepancies are adequately explained, the inventory lists are updated by the narcotics team.
+
+
+
+
+![AS_IS-supply](https://github.com/user-attachments/assets/6e414149-a191-4450-859a-206c955d1864)
+
 
 ### Inventory and supply chain 
-Once daily, personnel from the narcotics team checks the big safes inventory and evaluates with a threshold if an order of new narcotics needs to be placed. The threshold is defined with a great margin to make sure no shortage or delivery difficulties obstruct the availability of the important medications. Thus, it can be ensured that the veterinarians can access important medications directly and easily. If a narcotic in the small safe falls under a certain threshold it will be restocked from the big safe accordingly manually-.
-When one or more narcotics in the big safe falls below the threshold, a process to repurchase it will be started. To place the order, the member of the narcotics team, who checked stocks in the big safe, informs the specially trained, qualified purchasing team about the order. The purchasing team then places the order. Contracts or agreements (Verträge zur Beschaffung) for the procurement of these specific medications are often established with authorized suppliers. Upon arrival of the medications, the purchasing team checks the order and accepts it when no discrepancies are present. The narcotics team is informed about the arrival and fills the ordered narcotics into the big safe. Lastly, the staff have to manually update the paper-based inventory list of the big safe again to match the new stock.
+Once daily, personnel from the narcotics team checks the big safe's inventory and evaluates with a threshold if an order of new narcotics needs to be placed. The threshold is defined with a great margin to make sure no shortage or delivery difficulties obstruct the availability of the important medications. Thus, it can be ensured that the veterinarians can access important medications directly and easily. 
+ 
+If a narcotic in the small safe falls under a certain threshold it will be restocked from the big safe accordingly manually. Subsequently, the inventory lists are updated by the narcotics team. 
 
-# IMG
+When one or more narcotics in the big safe falls below the threshold, a process to repurchase it will be started. To place the order, the member of the narcotics team, who checked stocks in the big safe, informs the specially trained, qualified purchasing team about the order. The purchasing team then places the order. Contracts/agreements (Verträge zur Beschaffung) for the procurement of these specific medications are often established with authorized suppliers. Upon arrival of the medications, the purchasing team checks the order and accepts it. The narcotics team is informed about the arrival and fills the ordered narcotics into the big safe. Lastly, the staff have to manually update the paper-based inventory list of the big safe again to match the new stock.
+
 
 
 ## Technologies 🔄⚙️📈📧🛠️
