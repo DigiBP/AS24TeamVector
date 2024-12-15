@@ -102,6 +102,10 @@ If a narcotic in the small safe falls under a certain threshold it will be resto
 
 When one or more narcotics in the big safe falls below the threshold, a process to repurchase it will be started. To place the order, the member of the narcotics team, who checked stocks in the big safe, informs the specially trained, qualified purchasing team about the order. The purchasing team then places the order. Contracts/agreements (Verträge zur Beschaffung) for the procurement of these specific medications are often established with authorized suppliers. Upon arrival of the medications, the purchasing team checks the order and accepts it. The narcotics team is informed about the arrival and fills the ordered narcotics into the big safe. Lastly, the staff have to manually update the paper-based inventory list of the big safe again to match the new stock.
 
+![AS_IS](https://github.com/user-attachments/assets/3a294fe4-842d-4c2b-be97-37d055706179)
+
+
+
 
 
 ## Technologies 🔄⚙️📈📧🛠️
