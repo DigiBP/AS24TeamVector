@@ -91,16 +91,20 @@
         <bpmn:flowNodeRef>Gateway_0cjvk6u</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0lljt8d</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1m9cpir</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1837t61</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1w71xo1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0c16w0q</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0ryndx8</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0hlx2v6</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_09x02js</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1xgf5hg</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0yipkgi</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1cn0szb</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_02y3o58</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0ryndx8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0c16w0q</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1w71xo1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1837t61</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0clhmgc</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0fwe5s1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0x0or1a</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_13ta5so</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1oz1y07" name="purchasing Team">
         <bpmn:flowNodeRef>Activity_0u5j9uj</bpmn:flowNodeRef>
@@ -186,6 +190,7 @@ try {
     <bpmn:inclusiveGateway id="Gateway_1xgf5hg">
       <bpmn:incoming>Flow_03j4785</bpmn:incoming>
       <bpmn:incoming>Flow_09pmoap</bpmn:incoming>
+      <bpmn:incoming>Flow_0f4x21n</bpmn:incoming>
       <bpmn:outgoing>Flow_1qt37aq</bpmn:outgoing>
     </bpmn:inclusiveGateway>
     <bpmn:exclusiveGateway id="Gateway_0yipkgi">
@@ -210,111 +215,9 @@ try {
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${S(DocListSmall).prop('orderItem').elements().isEmpty()}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0pbdoll" sourceRef="Gateway_0cjvk6u" targetRef="Activity_0hlx2v6" />
-    <bpmn:sequenceFlow id="Flow_0qz93uf" name="yes" sourceRef="Gateway_02y3o58" targetRef="Activity_1837t61">
+    <bpmn:sequenceFlow id="Flow_0qz93uf" name="yes" sourceRef="Gateway_02y3o58" targetRef="Activity_0fwe5s1">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!S(DocListSmall).prop('orderItem').elements().isEmpty()}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:scriptTask id="Activity_1837t61" name="create order description" scriptFormat="javascript" camunda:resultVariable="order_description">
-      <bpmn:incoming>Flow_0qz93uf</bpmn:incoming>
-      <bpmn:outgoing>Flow_1txy36n</bpmn:outgoing>
-      <bpmn:script>// Input variable DocListSmall from previous task
-var rawDocList = execution.getVariable("DocListSmall");
-
-var docList;
-if (typeof rawDocList === "string") {
-    docList = JSON.parse(rawDocList);
-} else {
-    docList = rawDocList;
-}
-
-if (!docList || !docList.orderItem) {
-    throw new Error("The variable 'DocListSmall' is null or does not contain 'orderItem'.");
-}
-
-// Thresholds for medications
-var thresholds = {
-    "Methadon": 2,
-    "Dormicum": 1,
-    "Bupaq": 3,
-    "Esconarkon": 3,
-    "Keta-S": 4,
-    "Propofol": 2
-};
-
-// Create a plain string message
-var message = "Medications below threshold and required order quantities: From Big safe take \n";
-
-// Generate the order information
-docList.orderItem.forEach(function (item) {
-    var narcoticName = item.narcotic; // Extract the narcotic name
-    var threshold = thresholds[narcoticName];
-    if (threshold !== undefined) {
-        var orderAmount = 2 * threshold; // Calculate "to be ordered" amount
-        message += `- ${narcoticName}: ${orderAmount}\n`;
-    } else {
-        message += `- ${narcoticName}: No threshold defined. Skipped.\n`;
-    }
-});
-
-// Set the result variable for the process
-execution.setVariable("order_description", message); // Plain string result
-</bpmn:script>
-    </bpmn:scriptTask>
-    <bpmn:userTask id="Activity_1w71xo1" name="confirm transfer">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="orderDescription" label="Order Summary" type="string" defaultValue="${order_description}" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1txy36n</bpmn:incoming>
-      <bpmn:outgoing>Flow_1oy56al</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:serviceTask id="Activity_0c16w0q" name="update inventory list of small safe">
-      <bpmn:extensionElements>
-        <camunda:connector>
-          <camunda:inputOutput>
-            <camunda:inputParameter name="url">https://945152e0-66a8-4b9c-b068-364219c8e551.deepnoteproject.com/update_inventory</camunda:inputParameter>
-            <camunda:inputParameter name="method">POST</camunda:inputParameter>
-            <camunda:inputParameter name="headers">
-              <camunda:map>
-                <camunda:entry key="Content-Type">application/json</camunda:entry>
-              </camunda:map>
-            </camunda:inputParameter>
-            <camunda:inputParameter name="payload">
-          { "file_path": "narcotics_ss.csv", "Name": "${currentElement.prop('narcotic').value()}", "operation": "add", "big_safe": false }
-        </camunda:inputParameter>
-          </camunda:inputOutput>
-          <camunda:connectorId>http-connector</camunda:connectorId>
-        </camunda:connector>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1oy56al</bpmn:incoming>
-      <bpmn:outgoing>Flow_1szvbtk</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_1glm6qh">
-        <bpmn:targetRef>DataObjectReference_18nshfh</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-      <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="${S(DocListSmall).prop(&#39;orderItem&#39;).elements()}" camunda:elementVariable="currentElement" />
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_0ryndx8" name="update inventory list of big safe">
-      <bpmn:extensionElements>
-        <camunda:connector>
-          <camunda:inputOutput>
-            <camunda:inputParameter name="url">https://945152e0-66a8-4b9c-b068-364219c8e551.deepnoteproject.com/update_inventory</camunda:inputParameter>
-            <camunda:inputParameter name="method">POST</camunda:inputParameter>
-            <camunda:inputParameter name="headers">
-              <camunda:map>
-                <camunda:entry key="Content-Type">application/json</camunda:entry>
-              </camunda:map>
-            </camunda:inputParameter>
-            <camunda:inputParameter name="payload">
-          { "file_path": "narcotics_bs.csv", "Name": "${currentElement.prop('narcotic').value()}", "operation": "remove", "big_safe": false }
-        </camunda:inputParameter>
-          </camunda:inputOutput>
-          <camunda:connectorId>http-connector</camunda:connectorId>
-        </camunda:connector>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1szvbtk</bpmn:incoming>
-      <bpmn:outgoing>Flow_03j4785</bpmn:outgoing>
-      <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="${S(DocListSmall).prop(&#39;orderItem&#39;).elements()}" camunda:elementVariable="currentElement" />
-    </bpmn:serviceTask>
     <bpmn:serviceTask id="Activity_0hlx2v6" name="Create orderlist of big safe">
       <bpmn:extensionElements>
         <camunda:connector>
@@ -475,6 +378,181 @@ narcotic_shortage=object.shortage;</camunda:script>
       </bpmn:userTask>
       <bpmn:sequenceFlow id="Flow_1r8m7fr" sourceRef="Activity_0ca3pc6" targetRef="Activity_1i1rlkq" />
     </bpmn:subProcess>
+    <bpmn:serviceTask id="Activity_0ryndx8" name="update inventory list of big safe">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://945152e0-66a8-4b9c-b068-364219c8e551.deepnoteproject.com/update_inventory</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+          { "file_path": "narcotics_bs.csv", "Name": "${currentElement.prop('narcotic').value()}", "operation": "remove", "big_safe": false }
+        </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1szvbtk</bpmn:incoming>
+      <bpmn:outgoing>Flow_03j4785</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="${S(DocListSmall).prop(&#39;orderItem&#39;).elements()}" camunda:elementVariable="currentElement" />
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0c16w0q" name="update inventory list of small safe">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://945152e0-66a8-4b9c-b068-364219c8e551.deepnoteproject.com/update_inventory</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+          { "file_path": "narcotics_ss.csv", "Name": "${currentElement.prop('narcotic').value()}", "operation": "add", "big_safe": false }
+        </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1oy56al</bpmn:incoming>
+      <bpmn:outgoing>Flow_1szvbtk</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1glm6qh">
+        <bpmn:targetRef>DataObjectReference_18nshfh</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+      <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="${S(DocListSmall).prop(&#39;orderItem&#39;).elements()}" camunda:elementVariable="currentElement" />
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_1w71xo1" name="confirm transfer">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="orderDescription" label="Order Summary" type="string" defaultValue="${order_description}" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1txy36n</bpmn:incoming>
+      <bpmn:outgoing>Flow_1oy56al</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:scriptTask id="Activity_1837t61" name="create order description" scriptFormat="javascript" camunda:resultVariable="order_description">
+      <bpmn:incoming>Flow_05njda9</bpmn:incoming>
+      <bpmn:outgoing>Flow_1txy36n</bpmn:outgoing>
+      <bpmn:script>// Input variable DocListSmall from previous task
+var rawDocList = execution.getVariable("DocListSmall");
+
+var docList;
+if (typeof rawDocList === "string") {
+    docList = JSON.parse(rawDocList);
+} else {
+    docList = rawDocList;
+}
+
+if (!docList || !docList.orderItem) {
+    throw new Error("The variable 'DocListSmall' is null or does not contain 'orderItem'.");
+}
+
+// Thresholds for medications
+var thresholds = {
+    "Methadon": 2,
+    "Dormicum": 1,
+    "Bupaq": 3,
+    "Esconarkon": 3,
+    "Keta-S": 4,
+    "Propofol": 2
+};
+
+// Create a plain string message
+var message = "Medications below threshold and required order quantities: From Big safe take \n";
+
+// Generate the order information
+docList.orderItem.forEach(function (item) {
+    var narcoticName = item.narcotic; // Extract the narcotic name
+    var threshold = thresholds[narcoticName];
+    if (threshold !== undefined) {
+        var orderAmount = 2 * threshold; // Calculate "to be ordered" amount
+        message += `- ${narcoticName}: ${orderAmount}\n`;
+    } else {
+        message += `- ${narcoticName}: No threshold defined. Skipped.\n`;
+    }
+});
+
+// Set the result variable for the process
+execution.setVariable("order_description", message); // Plain string result
+</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_1cs8x2a" sourceRef="Activity_0fwe5s1" targetRef="Gateway_0clhmgc" />
+    <bpmn:exclusiveGateway id="Gateway_0clhmgc" name="All narcotics available">
+      <bpmn:incoming>Flow_1cs8x2a</bpmn:incoming>
+      <bpmn:outgoing>Flow_05njda9</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0s47wc1</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_05njda9" name="yes" sourceRef="Gateway_0clhmgc" targetRef="Activity_1837t61">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${shortageMessage.isEmpty()}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0s47wc1" name="no" sourceRef="Gateway_0clhmgc" targetRef="Activity_0x0or1a">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!shortageMessage.isEmpty()}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1o35t69" sourceRef="Activity_0x0or1a" targetRef="Activity_13ta5so" />
+    <bpmn:serviceTask id="Activity_0fwe5s1" name="check big safe availability">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://945152e0-66a8-4b9c-b068-364219c8e551.deepnoteproject.com/check_refill_availability</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">{
+  "orderItem": ${S(DocListSmall).prop('orderItem').elements()},
+  "big_safe_file": "/work/narcotics_bs.csv"
+}</camunda:inputParameter>
+            <camunda:outputParameter name="shortageMessage">
+              <camunda:script scriptFormat="JavaScript">shortage_response=JSON.parse(response);
+shortageMessage=shortage_response.shortage_message;</camunda:script>
+            </camunda:outputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0qz93uf</bpmn:incoming>
+      <bpmn:outgoing>Flow_1cs8x2a</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_0x0or1a" name="confirm not enough storage">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="shortageMessage" label="Shortage Message" type="string" defaultValue="${shortageMessage}" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0s47wc1</bpmn:incoming>
+      <bpmn:outgoing>Flow_1o35t69</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_13ta5so" name="order cancelation notification">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://945152e0-66a8-4b9c-b068-364219c8e551.deepnoteproject.com/send-email</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">{
+  "to_email": "turan.firat4@gmail.com",
+  "subject": "Not enough storage",
+  "body": "${shortageMessage}",
+  "from_email": "vectorgroup209@gmail.com"
+}</camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1o35t69</bpmn:incoming>
+      <bpmn:outgoing>Flow_0f4x21n</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0f4x21n" sourceRef="Activity_13ta5so" targetRef="Gateway_1xgf5hg" />
   </bpmn:process>
   <bpmn:process id="Process_0ch1smc" isExecutable="false">
     <bpmn:task id="Activity_1vxjugr" name="Send day list">
@@ -647,22 +725,6 @@ narcotic_shortage=object.shortage;</camunda:script>
         <dc:Bounds x="480" y="1330" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_140dpv5_di" bpmnElement="Activity_1837t61">
-        <dc:Bounds x="1080" y="1190" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0aai793_di" bpmnElement="Activity_1w71xo1">
-        <dc:Bounds x="1250" y="1190" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1yilonj_di" bpmnElement="Activity_0c16w0q">
-        <dc:Bounds x="1430" y="1190" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_0ui5tf5" bpmnElement="Activity_0ryndx8">
-        <dc:Bounds x="1630" y="1190" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_0qamupo" bpmnElement="Activity_0hlx2v6">
         <dc:Bounds x="660" y="1190" width="100" height="80" />
         <bpmndi:BPMNLabel />
@@ -696,6 +758,38 @@ narcotic_shortage=object.shortage;</camunda:script>
         <bpmndi:BPMNLabel>
           <dc:Bounds x="321" y="1972" width="79" height="27" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0ui5tf5" bpmnElement="Activity_0ryndx8">
+        <dc:Bounds x="1720" y="1190" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1yilonj_di" bpmnElement="Activity_0c16w0q">
+        <dc:Bounds x="1570" y="1190" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0aai793_di" bpmnElement="Activity_1w71xo1">
+        <dc:Bounds x="1430" y="1190" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_140dpv5_di" bpmnElement="Activity_1837t61">
+        <dc:Bounds x="1300" y="1190" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0clhmgc_di" bpmnElement="Gateway_0clhmgc" isMarkerVisible="true">
+        <dc:Bounds x="1175" y="1205" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1170" y="1175" width="60" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13qpgmw_di" bpmnElement="Activity_0fwe5s1">
+        <dc:Bounds x="1020" y="1190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1vtnnrn_di" bpmnElement="Activity_0x0or1a">
+        <dc:Bounds x="1300" y="1300" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1awfbr3" bpmnElement="Activity_13ta5so">
+        <dc:Bounds x="1530" y="1300" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1p8tye5_di" bpmnElement="Activity_1ekylzz" isExpanded="true">
         <dc:Bounds x="670" y="1830" width="1200" height="160" />
@@ -755,8 +849,8 @@ narcotic_shortage=object.shortage;</camunda:script>
         <di:waypoint x="1982" y="1410" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1szvbtk_di" bpmnElement="Flow_1szvbtk">
-        <di:waypoint x="1530" y="1230" />
-        <di:waypoint x="1630" y="1230" />
+        <di:waypoint x="1670" y="1230" />
+        <di:waypoint x="1720" y="1230" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0142v7m_di" bpmnElement="Flow_0142v7m">
         <di:waypoint x="700" y="1410" />
@@ -773,15 +867,15 @@ narcotic_shortage=object.shortage;</camunda:script>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1oy56al_di" bpmnElement="Flow_1oy56al">
-        <di:waypoint x="1350" y="1230" />
-        <di:waypoint x="1430" y="1230" />
+        <di:waypoint x="1530" y="1230" />
+        <di:waypoint x="1570" y="1230" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1txy36n_di" bpmnElement="Flow_1txy36n">
-        <di:waypoint x="1180" y="1230" />
-        <di:waypoint x="1250" y="1230" />
+        <di:waypoint x="1400" y="1230" />
+        <di:waypoint x="1430" y="1230" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_03j4785_di" bpmnElement="Flow_03j4785">
-        <di:waypoint x="1730" y="1230" />
+        <di:waypoint x="1820" y="1230" />
         <di:waypoint x="1870" y="1230" />
         <di:waypoint x="1870" y="1385" />
       </bpmndi:BPMNEdge>
@@ -821,9 +915,9 @@ narcotic_shortage=object.shortage;</camunda:script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0qz93uf_di" bpmnElement="Flow_0qz93uf">
         <di:waypoint x="975" y="1230" />
-        <di:waypoint x="1080" y="1230" />
+        <di:waypoint x="1020" y="1230" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1019" y="1212" width="18" height="14" />
+          <dc:Bounds x="973" y="1212" width="18" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_02tnemd_di" bpmnElement="Flow_02tnemd">
@@ -833,6 +927,34 @@ narcotic_shortage=object.shortage;</camunda:script>
       <bpmndi:BPMNEdge id="Flow_1bvwkj9_di" bpmnElement="Flow_1bvwkj9">
         <di:waypoint x="1770" y="1590" />
         <di:waypoint x="1770" y="1435" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1cs8x2a_di" bpmnElement="Flow_1cs8x2a">
+        <di:waypoint x="1120" y="1230" />
+        <di:waypoint x="1175" y="1230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05njda9_di" bpmnElement="Flow_05njda9">
+        <di:waypoint x="1225" y="1230" />
+        <di:waypoint x="1300" y="1230" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1254" y="1212" width="18" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0s47wc1_di" bpmnElement="Flow_0s47wc1">
+        <di:waypoint x="1200" y="1255" />
+        <di:waypoint x="1200" y="1340" />
+        <di:waypoint x="1300" y="1340" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1209" y="1295" width="13" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1o35t69_di" bpmnElement="Flow_1o35t69">
+        <di:waypoint x="1400" y="1340" />
+        <di:waypoint x="1530" y="1340" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0f4x21n_di" bpmnElement="Flow_0f4x21n">
+        <di:waypoint x="1630" y="1340" />
+        <di:waypoint x="1870" y="1340" />
+        <di:waypoint x="1870" y="1385" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_0ktpxyz_di" bpmnElement="Participant_0ktpxyz" isHorizontal="true">
         <dc:Bounds x="630" y="80" width="1149" height="330" />
@@ -911,7 +1033,7 @@ narcotic_shortage=object.shortage;</camunda:script>
         <di:waypoint x="1158" y="1035" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1glm6qh_di" bpmnElement="DataOutputAssociation_1glm6qh">
-        <di:waypoint x="1491" y="1190" />
+        <di:waypoint x="1601" y="1190" />
         <di:waypoint x="1530" y="1045" />
         <di:waypoint x="1158" y="1045" />
       </bpmndi:BPMNEdge>
