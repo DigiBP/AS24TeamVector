@@ -65,7 +65,7 @@ In addition, the responsibilities of the different parties are not truly clear, 
 
 
 ## Goal 🎯✨ 
-In the context of the previously discussed issues and limitations in the narcotic-related processes in the selected veterinary clinic, we aim to reduce the amount of paperwork by digitalizing the inventory lists and providing an automated reordering process. A major advantage is handling the critical tasks of checking inventory and performing calculations to cross-check and flag inconsistencies automatically is that human errors can be eliminated, in addition to significantly speeding up the time required for these administrative tasks.
+In the context of the previously discussed issues and limitations in the narcotic-related processes in the selected veterinary clinic, we aim to reduce the amount of paperwork by digitalizing the inventory lists and providing an automated reordering process. A major advantage in handling the critical tasks of checking inventory and performing calculations to cross-check and flag inconsistencies automatically is that human errors can be eliminated, in addition to significantly speeding up the time required for these administrative tasks.
 
 The vision is to ultimately aid in preventing misuse and to increase efficiency for the specialized veterinary staff- allowing a greater focus on patient care. Moreover, the implementation of automated alternative supports the team in providing the optimal and empathetic care that each animal patient requires. 
 
