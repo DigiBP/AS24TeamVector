@@ -1,7 +1,6 @@
 # Team Vector - Digitalization of narcotics management in an inhouse pharmacy of a veterinary clinic
 🐕🐱🐴🐟🦜🦓🦒🦔🦩🦥🦦🐆🐅🦀🦞🐧🦉🦚🦜🐢🐍🦘
-
-# IMG
+ 
 ![doggo](https://github.com/user-attachments/assets/a59f7451-a524-4437-8af4-b7f24fa89b6f)
 
 
