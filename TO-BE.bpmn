@@ -137,7 +137,7 @@
       </bpmn:extensionElements>
       <bpmn:outgoing>Flow_0o538da</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_19wufkz">
-        <bpmn:timeCycle>0 0 11,17 * * ? *Europe/Zurich</bpmn:timeCycle>
+        <bpmn:timeCycle>0 0 11 * * ? *Europe/Zurich</bpmn:timeCycle>
       </bpmn:timerEventDefinition>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_0o538da" sourceRef="Event_0lljt8d" targetRef="Gateway_0cjvk6u" />
@@ -528,7 +528,7 @@ shortageMessage=shortage_response.shortage_message;</camunda:script>
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">{
   "to_email": "sarah.deckarm@gmail.com",
-  "subject": "Not enough storage",
+  "subject": "Not enough in storage",
   "body": "${shortageMessage}",
   "from_email": "vectorgroup209@gmail.com"
 }</camunda:inputParameter>
