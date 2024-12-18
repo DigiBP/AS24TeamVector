@@ -255,7 +255,7 @@ try {
               </camunda:map>
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">{
-  "to_email": "turan.firat4@gmail.com",
+  "to_email": "sarah.deckarm@gmail.com",
   "subject": "Order arrived",
   "body": "The orders from the vendors have arrived and are ready to be filled into the big safe. The database has been updated",
   "from_email": "vectorgroup209@gmail.com"
@@ -527,7 +527,7 @@ shortageMessage=shortage_response.shortage_message;</camunda:script>
               </camunda:map>
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">{
-  "to_email": "turan.firat4@gmail.com",
+  "to_email": "sarah.deckarm@gmail.com",
   "subject": "Not enough storage",
   "body": "${shortageMessage}",
   "from_email": "vectorgroup209@gmail.com"
@@ -781,6 +781,10 @@ shortageMessage=shortage_response.shortage_message;</camunda:script>
         <dc:Bounds x="870" y="1885" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1wgn6sz" bpmnElement="Activity_0n9mdx2">
+        <dc:Bounds x="1090" y="1885" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0nnrf0l_di" bpmnElement="Event_0nnrf0l">
         <dc:Bounds x="1702" y="1907" width="36" height="36" />
       </bpmndi:BPMNShape>
@@ -797,10 +801,6 @@ shortageMessage=shortage_response.shortage_message;</camunda:script>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_0p6eddl" bpmnElement="Activity_0ca3pc6">
         <dc:Bounds x="1420" y="1885" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_1wgn6sz" bpmnElement="Activity_0n9mdx2">
-        <dc:Bounds x="1090" y="1885" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_11d5wpv_di" bpmnElement="Flow_11d5wpv">
