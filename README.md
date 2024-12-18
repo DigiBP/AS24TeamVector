@@ -3,11 +3,6 @@
  
 ![doggo](https://github.com/user-attachments/assets/a59f7451-a524-4437-8af4-b7f24fa89b6f)
 
-
-Passwort for Keepass is password
-
-https://deepnote.com/workspace/Leonie-I-7c59ff99-3227-4911-a84a-ebbab792815e/project/Exercise-Writing-your-own-REST-API-using-Python-Flask-Duplicate-945152e0-66a8-4b9c-b068-364219c8e551/notebook/services-45ceab2ec0ec480bbda50b3c00942923?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=945152e0-66a8-4b9c-b068-364219c8e551
-
 ## Team Members 👨‍💻👩‍⚕️🏥🐾
 Firat Turan - firat.turan@students.fhnw.ch 
 
