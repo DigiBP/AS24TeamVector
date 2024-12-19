@@ -167,7 +167,7 @@ The scope of this project has been adjusted during the course of the collaborati
 
 
 ## Chatbot/LLM 
--  Please see xxxxx for more information on this sub-project 
+-  Please see these links for a brief [explanation](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Documentation%20-%20Chatbot%20Adventures.pptx) and a [video](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Chatbot_test.mp4) for more information on this sub-project 
 
 ### Pilot project 👩‍⚕️👨‍⚕️🦠💉🩺🏥🚑🩹
  This is currently seen as a pilot project, with possible implementation on a wider scope. This "to-be" workflow introduces a systematic and automated approach to managing the supply chain for narcotics, with automatic daily triggers and inventory evaluations at predefined thresholds. With the designated routes, complexity in the management is broken down and transferring medications between safes and reordering from external pharmacies when stock is insufficient is made easier. Additionally, addressing scenarios like shortages in the big safe or alternative medication suggestions when reorders are unavailable is crucial. 
@@ -186,17 +186,25 @@ Expansion to the verification process can be easily imagined and would be an int
 
 
 ## How to run 📝
+
 1.	Start the link: deepnote.com/workspace/Leonie-I-7c59ff99-3227-4911-a84a-ebbab792815e/project/Exercise-Writing-your-own-REST-API-using-Python-Flask-Duplicate-945152e0-66a8-4b9c-b068-364219c8e551/notebook/services-45ceab2ec0ec480bbda50b3c00942923?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=945152e0-66a8-4b9c-b068-364219c8e551
+   
 2.	Open Camunda Tasklist (martinlab.science), username: mi24vector and password: password and follow the processes (see video links below) 
 
 
 ## Links 🔗
+
 •	[Camunda](https://digibp.engine.martinlab.science/camunda/app/tasklist/default/#/?searchQuery=%5B%5D&filter=f0945b62-643a-11ef-8ae6-fa163ee583d0&sorting=%5B%7B%22sortBy%22:%22created%22,%22sortOrder%22:%22desc%22%7D%5D)
+
 •	[Deepnote](https://deepnote.com/workspace/Leonie-I-7c59ff99-3227-4911-a84a-ebbab792815e/project/Exercise-Writing-your-own-REST-API-using-Python-Flask-Duplicate-945152e0-66a8-4b9c-b068-364219c8e551/notebook/services-45ceab2ec0ec480bbda50b3c00942923?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=945152e0-66a8-4b9c-b068-364219c8e551) 
+
+
 
 Presentation/BPMN 
 
+
 •	Presentation: 
+
 
 •	BPMN: as is - https://github.com/DigiBP/AS24TeamVector/blob/main/AS-IS_process.bpmn
 
@@ -204,6 +212,7 @@ Presentation/BPMN
 
 
 Videos: 
+
 
 •	Video – as is process (tokens)  - xxxx
 
