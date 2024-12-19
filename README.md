@@ -53,7 +53,7 @@ Our vision is to enhance tracking and streamline workflow management, thereby co
 ## Current Challenges🚩
 This problem was addressed in the context of one veterinary clinic, to provide realistic, actionable and viable processes (with possible scaling/generalization to other clinics and/or applications). While this will be described in more detail below, several issues in the current narcotics management are presently highlighted. 
 
-The clinic in question handles all narcotics-related processes manually, with no automation and is exclusively paper based. Stock tracking also occurs manually and is paper-based. There is no automation in repurchasing and stock updates. This manual documentation leads to inefficiencies and potential human error. 
+The clinic in question handles all narcotics-related processes manually, with no automation and is exclusively paper based. Stock tracking, repurchasing, and stock updates are all performed manually and are entirely paper-based. This manual documentation leads to inefficiencies and potential human error. 
   
 For validation, twice daily, specialized staff counts the number of remaining narcotics, and does a cross validation on the documented usage of narcotics against the remaining stock-- again, all manually and paper-based. This, again, is highly time consuming and does not provide the possibility of flagging inconsistencies automatically. 
 
@@ -74,7 +74,7 @@ In the veterinary clinic, there are two safes to store narcotics. The physical l
 ![AS_IS-subprocess](https://github.com/user-attachments/assets/592747ad-8aee-487c-8e9d-50fb2c4d6e3c)
 
 ### Narcotics administration 
-The as-is process is initiated with a new patient's arrival, capturing of data by the front staff and the evaluation performed by the veterinarian to assess the need of narcotics for this individual patient. If they decide that narcotics are required, the sub-process of applying the narcotics to this specific patient is started. The veterinarian fills out a paper form to document the required extensive information on the patient, diverse details on the medication, the indication and the individual indicating/dispensing the medication. After the documentation is completed, subsequently the narcotics are removed and are applied to the patient, ending the process. As a side note, if a new vial is opened but not used up completely, it may be stored for later use for the specific patient it got taken out for. 
+The as-is process begins with a new patient's arrival, where front staff capture data, followed by the veterinarian's evaluation to determine the new patient's need for narcotics. If they decide that narcotics are required, the sub-process of applying the narcotics to this specific patient is started. The veterinarian fills out a paper form to document the required extensive information on the patient, diverse details on the medication, the indication and the individual indicating/dispensing the medication. After the documentation is completed, subsequently the narcotics are removed and are applied to the patient, ending the process. As a side note, if a new vial is opened but not used up completely, it may be stored for later use for the specific patient it got taken out for. 
 
 
 
@@ -107,7 +107,7 @@ When one or more narcotics in the big safe falls below the threshold, a process 
 
 The to-be process for the supply chain is triggered in a time dependent manner, for instance daily at 11am. Information from the clinic in the form of an inventory list of the small safe is required for this process, and will be explained in further detail below. Additionally, information on the inventory list of the big safe is required. The stocks are kept on a stock list in a csv format, for each safe. 
 
-The number of stocks in both the small and the large small safe are evaluated against a medication-specific threshold to determine if there are sufficient medications available as a service task. So-called “order lists,” or lists containing medications that fall beneath the threshold, are created for each safe. Then, depending on different conditions, different routes are started. The routes are considered independently for each safe below, and examined in further detail. 
+The number of stocks in both the small and the large small safe are evaluated against a medication-specific threshold to determine if there are sufficient medications available as a service task. So-called “order lists,” or lists containing medications that fall beneath the threshold, are created for each safe. Then, depending on specific conditions, different routes are started. The routes are considered independently for each safe below, and examined in further detail. 
 
 
 ### Route 1: Small safe has insufficient medication stock  transfer from big to small: sufficient narcotics in the big safe 
@@ -122,7 +122,7 @@ Once the narcotics team member confirms that that they transferred the medicatio
 ### Route 2: Small safe has insufficient medication stock  transfer from big to small: insufficient narcotics in the big safe
 ![Route2](https://github.com/user-attachments/assets/fcc3fe77-3d67-48e8-9051-0014b9b87e49)
 
-For robustness, the case when the big safe does not have sufficient medications was considered. This is the case if “is narcotics available” in the big safe is answered with no. Then, the narcotics personell has to confirm that there is not enough in and the order is cancelled, and an email notification is sent to the narcotics team; this ends without updating any of the lists. 
+For robustness, the case when the big safe does not have sufficient medications was considered. This is the case if “is narcotics available” in the big safe is answered with no. Then, the narcotics personell must confirm the shortage, and the order is cancelled. An email notification is sent to the narcotics team, thus ending without updating any of the lists. 
 
 ### Route 3: Small safe has sufficient medication stock
 ![Route3](https://github.com/user-attachments/assets/037861df-d8b8-4a2c-9760-04f17aacc5c5)
@@ -143,7 +143,7 @@ Now, the big safe is described. As previously stated, the order list is created 
 
 If a narcotic falls below the threshold and a reorder of the medication for the big safe required, the purchasing team is involved. 
 
-A service is implemented (API call, with an internally created API) to check if the medication is available for re-order from the pharmacy (i.e. to check if there are medication shortages on the market currently). Then a DMN is implemented, where:
+A service is implemented (API call, with an internally created API) to check if the medication is available for re-order from the pharmacy (i.e. to check if there are medication shortages on the market currently). Then a Decision Model and Notation (DMN) is implemented, where:
 
 1.	If the medication stock is insufficient but it is available for reorder, the same medication is reordered (typically under the described contracts). 
 
@@ -167,7 +167,8 @@ The scope of this project has been adjusted during the course of the collaborati
 
 
 ## Chatbot/LLM 
--  Please see these links for a brief [explanation](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Documentation%20-%20Chatbot%20Adventures.pptx) and a [video](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Chatbot_test.mp4) for more information on this sub-project 
+-  Please see these links for a brief [explanation](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Documentation%20-%20Chatbot%20Adventures.pptx) and [video](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Chatbot_test.mp4) for more information on this sub-project 
+
 
 ### Pilot project 👩‍⚕️👨‍⚕️🦠💉🩺🏥🚑🩹
  This is currently seen as a pilot project, with possible implementation on a wider scope. This "to-be" workflow introduces a systematic and automated approach to managing the supply chain for narcotics, with automatic daily triggers and inventory evaluations at predefined thresholds. With the designated routes, complexity in the management is broken down and transferring medications between safes and reordering from external pharmacies when stock is insufficient is made easier. Additionally, addressing scenarios like shortages in the big safe or alternative medication suggestions when reorders are unavailable is crucial. 
@@ -187,9 +188,9 @@ Expansion to the verification process can be easily imagined and would be an int
 
 ## How to run 📝
 
-1.	Start the link: deepnote.com/workspace/Leonie-I-7c59ff99-3227-4911-a84a-ebbab792815e/project/Exercise-Writing-your-own-REST-API-using-Python-Flask-Duplicate-945152e0-66a8-4b9c-b068-364219c8e551/notebook/services-45ceab2ec0ec480bbda50b3c00942923?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=945152e0-66a8-4b9c-b068-364219c8e551
+1.	Start the [link](https://deepnote.com/workspace/Leonie-I-7c59ff99-3227-4911-a84a-ebbab792815e/project/Exercise-Writing-your-own-REST-API-using-Python-Flask-Duplicate-945152e0-66a8-4b9c-b068-364219c8e551/notebook/services-45ceab2ec0ec480bbda50b3c00942923?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=945152e0-66a8-4b9c-b068-364219c8e551) 
    
-2.	Open Camunda Tasklist (martinlab.science), username: mi24vector and password: password and follow the processes (see video links below) 
+2.	Open Camunda Tasklist ([martinlab.science](https://digibp.engine.martinlab.science/camunda/app/tasklist/default/#/?searchQuery=%5B%5D&filter=f0945b62-643a-11ef-8ae6-fa163ee583d0&sorting=%5B%7B%22sortBy%22:%22created%22,%22sortOrder%22:%22desc%22%7D%5D)), username: mi24vector and password: password and follow the processes (see video links below) 
 
 
 ## Links 🔗
