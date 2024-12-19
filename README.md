@@ -61,7 +61,7 @@ In addition, the responsibilities of the different parties are not truly clear, 
 
 
 ## Goal 🎯✨ 
-In the context of the previously discussed issues and limitations in the narcotic-related processes in the selected veterinary clinic, we aim to reduce the amount of paperwork by digitalizing the inventory lists and providing an automated reordering process. A major advantage in handling the critical tasks of checking inventory and performing calculations to cross-check and flag inconsistencies automatically is that human errors can be eliminated, in addition to significantly speeding up the time required for these administrative tasks.
+In the context of the previously discussed issues and limitations in the narcotic-related processes in the selected veterinary clinic, we aim to reduce the amount of paperwork by digitalizing the inventory lists and providing an automated reordering process. Thus, human errors can be eliminated, in addition to significantly speeding up the time required for these administrative tasks.
 
 The vision is to ultimately aid in preventing misuse and to increase efficiency for the specialized veterinary staff- allowing a greater focus on patient care. Moreover, the implementation of automated alternative supports the team in providing the optimal and empathetic care that each animal patient requires. 
 
@@ -71,17 +71,24 @@ The vision is to ultimately aid in preventing misuse and to increase efficiency 
    
 In the veterinary clinic, there are two safes to store narcotics. The physical location of the safes are very strictly regulated in terms of access, and only limited staff have the rights and possibility to open the safes where the narcotics are stored. A small safe stores the narcotics that can be provided to patients. Additionally, a larger safe, which is only accessible to the team managing narcotics supply, is available to stock up the small safe if needed. This strict dual system provides an additional safe-guard for prevention of narcotics misuse. 
 
-![AS_IS-subprocess](https://github.com/user-attachments/assets/592747ad-8aee-487c-8e9d-50fb2c4d6e3c)
+
 
 ### Narcotics administration 
+
+![AS_IS-subprocess](https://github.com/user-attachments/assets/592747ad-8aee-487c-8e9d-50fb2c4d6e3c)
+
 The as-is process begins with a new patient's arrival, where front staff capture data, followed by the veterinarian's evaluation to determine the new patient's need for narcotics. If they decide that narcotics are required, the sub-process of applying the narcotics to this specific patient is started. The veterinarian fills out a paper form to document the required extensive information on the patient, diverse details on the medication, the indication and the individual indicating/dispensing the medication. After the documentation is completed, subsequently the narcotics are removed and are applied to the patient, ending the process. As a side note, if a new vial is opened but not used up completely, it may be stored for later use for the specific patient it got taken out for. 
 
 
 
-![AS_IS-control](https://github.com/user-attachments/assets/ca29fa96-e5cd-418c-80ab-c137268b73af)
+
 
 
 ### Validation 
+
+![AS_IS-control](https://github.com/user-attachments/assets/ca29fa96-e5cd-418c-80ab-c137268b73af)
+
+
 To ensure complete correctness, twice a day, one designated veterinarian checks the paper documentation of narcotics used. Then, it is checked against the available stock in the small safe to ensure all entries are valid, there are no discrepancies and everything is tracked correctly. If a discrepancy (deviation) is discovered an investigation is initiated. It is absolutely imperative that any discrepancies are resolved or adequately explained. This process is highly resource-intensive, stressful, and can be frustrating for all parties involved. Failure to resolve this could lead to severe legal implications and limitations in practicing rights, among others.
 
 After the discrepancies are adequately explained, the inventory lists are updated by the narcotics team.
@@ -89,17 +96,25 @@ After the discrepancies are adequately explained, the inventory lists are update
 
 
 
-![AS_IS-supply](https://github.com/user-attachments/assets/6e414149-a191-4450-859a-206c955d1864)
-
 
 ### Inventory and supply chain 
+
+![AS_IS-supply](https://github.com/user-attachments/assets/6e414149-a191-4450-859a-206c955d1864)
+
 Once daily, personnel from the narcotics team checks the big safe's inventory and evaluates with a threshold if an order of new narcotics needs to be placed. The threshold is defined with a great margin to make sure no shortage or delivery difficulties obstruct the availability of the important medications. Thus, it can be ensured that the veterinarians can access important medications directly and easily. 
  
 If a narcotic in the small safe falls under a certain threshold it will be restocked from the big safe accordingly manually. Subsequently, the inventory lists are updated by the narcotics team. 
 
 When one or more narcotics in the big safe falls below the threshold, a process to repurchase it will be started. To place the order, the member of the narcotics team, who checked stocks in the big safe, informs the specially trained, qualified purchasing team about the order. The purchasing team then places the order. Contracts/agreements (Verträge zur Beschaffung) for the procurement of these specific medications are often established with authorized suppliers. Upon arrival of the medications, the purchasing team checks the order and accepts it. The narcotics team is informed about the arrival and fills the ordered narcotics into the big safe. Lastly, the staff have to manually update the paper-based inventory list of the big safe again to match the new stock.
 
+
+### Overview of full AS-IS Process
+
 ![AS_IS](https://github.com/user-attachments/assets/3a294fe4-842d-4c2b-be97-37d055706179)
+
+
+
+
 
 
 ## TO-BE Process 🔍💉🩺📊📦
@@ -173,11 +188,11 @@ Full Overview:
 
 ### Pilot project  💻👩‍⚕️👨‍⚕️🦠💉🩺🏥🚑🩹
  This is currently seen as a pilot project, with possible implementation on a wider scope. This "to-be" workflow introduces a systematic and automated approach to managing the supply chain for narcotics, with automatic daily triggers and inventory evaluations at predefined thresholds. With the designated routes, complexity in the management is broken down and transferring medications between safes and reordering from external pharmacies when stock is insufficient is made easier. Additionally, addressing scenarios like shortages in the big safe or alternative medication suggestions when reorders are unavailable is crucial. 
-Expansion to the verification process can be easily imagined and would be an interesting implementation for a future project. While it would bring certain novel complexities (clinical aspects, complexity in administration and data collection), this could likely be nicely digitalized and additionally integrated into the digitalization of the narcotics workflow in a veterinary clinic, with additional value gained. 
+ 
+Expansion to the verification process can be easily imagined and would be an interesting implementation for a future project. While it would bring certain novel complexities (clinical aspects, complexity in administration and data collection), this could likely be nicely digitalized and additionally integrated into the digitalization of the narcotics workflow in a veterinary clinic, with additional value gained. A major advantage in handling the critical tasks of verification and performing calculations to cross-check and flag inconsistencies automatically is that human errors can be eliminated, in addition to streamlining these administrative tasks.
 
 
-
-## Conclusions 💻📦📈💊⏳🌟🩺🛠️
+## Conclusions 📦📈💻💊⏳🛠️
 
 The current process (As-Is) for managing narcotics in the veterinary clinic is entirely manual, paper-based, and resource-intensive. Tasks like inventory tracking, validation, and reordering are prone to human error and inefficiencies, with staff spending considerable time on administrative duties instead of patient care. The proposed "to-be" process introduces automation and digitalization, including inventory tracking, threshold-based stock management, and automated reordering workflows. Key improvements include APIs for inventory updates and detection of medication short-passes, decision support systems for alternative medications, and streamlined communication between stakeholders. It solves problems particularily within the scope of the supply chain, and the digitalization of this process helps to both 
 enhanced efficiency and reduced paperwork, as well as to minimized errors. This will result in significant savings, as well as better regulatoy/legal compliance and patient care. 
