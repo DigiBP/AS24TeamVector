@@ -164,6 +164,7 @@ The scope of this project has been adjusted during the course of the collaborati
  ![Screenshot from 2024-12-19 08-43-54](https://github.com/user-attachments/assets/163fe752-840a-4019-9e74-b4d09389c4a7)
 ![Screenshot from 2024-12-19 08-44-44](https://github.com/user-attachments/assets/f6f2b120-fe74-4df1-b718-76f41989c63e)
 
+Full Overview: 
 ![Screenshot from 2024-12-19 08-54-12](https://github.com/user-attachments/assets/02f784cb-6d7d-4b2e-ae1f-01292cac6ae4)
 
 ## Chatbot/LLM 
@@ -180,10 +181,8 @@ Expansion to the verification process can be easily imagined and would be an int
 
 The current process (As-Is) for managing narcotics in the veterinary clinic is entirely manual, paper-based, and resource-intensive. Tasks like inventory tracking, validation, and reordering are prone to human error and inefficiencies, with staff spending considerable time on administrative duties instead of patient care. The proposed "to-be" process introduces automation and digitalization, including inventory tracking, threshold-based stock management, and automated reordering workflows. Key improvements include APIs for inventory updates and detection of medication short-passes, decision support systems for alternative medications, and streamlined communication between stakeholders. It solves problems particularily within the scope of the supply chain, and the digitalization of this process helps to both 
 enhanced efficiency and reduced paperwork, as well as to minimized errors. This will result in significant savings, as well as better regulatoy/legal compliance and patient care. 
-
-
-![Happy Dog](https://github.com/user-attachments/assets/d32849a8-1ca5-471d-9b6f-e37762c8c19e)
-
+ 
+![smaller doggo](https://github.com/user-attachments/assets/f774296b-4287-423c-9c50-7c68e3f3fd6e)
 
 
 ## Technologies 🔄⚙️📈📧🛠️
