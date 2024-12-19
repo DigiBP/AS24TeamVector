@@ -170,7 +170,7 @@ The scope of this project has been adjusted during the course of the collaborati
 -  Please see these links for a brief [explanation](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Documentation%20-%20Chatbot%20Adventures.pptx) and [video](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Chatbot_test.mp4) for more information on this sub-project 
 
 
-### Pilot project 👩‍⚕️👨‍⚕️🦠💉🩺🏥🚑🩹
+### Pilot project  💻👩‍⚕️👨‍⚕️🦠💉🩺🏥🚑🩹
  This is currently seen as a pilot project, with possible implementation on a wider scope. This "to-be" workflow introduces a systematic and automated approach to managing the supply chain for narcotics, with automatic daily triggers and inventory evaluations at predefined thresholds. With the designated routes, complexity in the management is broken down and transferring medications between safes and reordering from external pharmacies when stock is insufficient is made easier. Additionally, addressing scenarios like shortages in the big safe or alternative medication suggestions when reorders are unavailable is crucial. 
 Expansion to the verification process can be easily imagined and would be an interesting implementation for a future project. While it would bring certain novel complexities (clinical aspects, complexity in administration and data collection), this could likely be nicely digitalized and additionally integrated into the digitalization of the narcotics workflow in a veterinary clinic, with additional value gained. 
 
@@ -186,7 +186,7 @@ Expansion to the verification process can be easily imagined and would be an int
 •	(Voiceflow)
 
 
-## How to run 📝
+## How to run 📝💻
 
 1.	Start the [link](https://deepnote.com/workspace/Leonie-I-7c59ff99-3227-4911-a84a-ebbab792815e/project/Exercise-Writing-your-own-REST-API-using-Python-Flask-Duplicate-945152e0-66a8-4b9c-b068-364219c8e551/notebook/services-45ceab2ec0ec480bbda50b3c00942923?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=945152e0-66a8-4b9c-b068-364219c8e551) 
    
@@ -204,7 +204,7 @@ Expansion to the verification process can be easily imagined and would be an int
 Presentation/BPMN 
 
 
-•	Presentation: 
+•	Presentation: https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Narcovet.pptx
 
 
 •	BPMN: as is - https://github.com/DigiBP/AS24TeamVector/blob/main/AS-IS_process.bpmn
@@ -215,9 +215,9 @@ Presentation/BPMN
 Videos: 
 
 
-•	Video – as is process (tokens)  - xxxx
+•	Video – as is process (tokens)  - [video](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/AS%20IS%20Tokens.mp4)
 
-•	Video – to be Route 1-4 (tokens)  - xxxx
+•	Video – to be Route 1-4 (tokens)  - [1](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Route%201%20tokens.mp4), [2](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Route%202%20tokens.mp4), [3](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Route%203%20tokens.mp4), [(4)](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Route%204%20tokens.mp4), [5](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Route%205%20tokens.mp4) 
 
 •	Video – Camunda - xxxx
 
