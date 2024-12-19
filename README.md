@@ -67,7 +67,7 @@ The vision is to ultimately aid in preventing misuse and to increase efficiency 
 
 
 ## AS-IS Process 🔒💊📦
- - xxxx
+ - https://github.com/DigiBP/AS24TeamVector/blob/main/AS-IS_process.bpmn 
    
 In the veterinary clinic, there are two safes to store narcotics. The physical location of the safes are very strictly regulated in terms of access, and only limited staff have the rights and possibility to open the safes where the narcotics are stored. A small safe stores the narcotics that can be provided to patients. Additionally, a larger safe, which is only accessible to the team managing narcotics supply, is available to stock up the small safe if needed. This strict dual system provides an additional safe-guard for prevention of narcotics misuse. 
 
@@ -103,7 +103,7 @@ When one or more narcotics in the big safe falls below the threshold, a process 
 
 
 ## TO-BE Process 🔍💉🩺📊📦
- - xxxx
+ - https://github.com/DigiBP/AS24TeamVector/blob/main/TO-BE.bpmn
 
 The to-be process for the supply chain is triggered in a time dependent manner, for instance daily at 11am. Information from the clinic in the form of an inventory list of the small safe is required for this process, and will be explained in further detail below. Additionally, information on the inventory list of the big safe is required. The stocks are kept on a stock list in a csv format, for each safe. 
 
@@ -191,15 +191,25 @@ Expansion to the verification process can be easily imagined and would be an int
 
 
 ## Links 🔗
-•	Camunda: Camunda Tasklist (martinlab.science)
-•	Deepnote: https://deepnote.com/workspace/Leonie-I-7c59ff99-3227-4911-a84a-ebbab792815e/project/Exercise-Writing-your-own-REST-API-using-Python-Flask-Duplicate-945152e0-66a8-4b9c-b068-364219c8e551/notebook/services-45ceab2ec0ec480bbda50b3c00942923?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=945152e0-66a8-4b9c-b068-364219c8e551
+•	[Camunda](https://digibp.engine.martinlab.science/camunda/app/tasklist/default/#/?searchQuery=%5B%5D&filter=f0945b62-643a-11ef-8ae6-fa163ee583d0&sorting=%5B%7B%22sortBy%22:%22created%22,%22sortOrder%22:%22desc%22%7D%5D)
+•	[Deepnote](https://deepnote.com/workspace/Leonie-I-7c59ff99-3227-4911-a84a-ebbab792815e/project/Exercise-Writing-your-own-REST-API-using-Python-Flask-Duplicate-945152e0-66a8-4b9c-b068-364219c8e551/notebook/services-45ceab2ec0ec480bbda50b3c00942923?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=945152e0-66a8-4b9c-b068-364219c8e551) 
+
 Presentation/BPMN 
+
 •	Presentation: 
-•	BPMN: as is - xxxx
-•	BPMN: to be  - xxxx
+
+•	BPMN: as is - https://github.com/DigiBP/AS24TeamVector/blob/main/AS-IS_process.bpmn
+
+•	BPMN: to be  - https://github.com/DigiBP/AS24TeamVector/blob/main/TO-BE.bpmn
+
+
 Videos: 
+
 •	Video – as is process (tokens)  - xxxx
+
 •	Video – to be Route 1-4 (tokens)  - xxxx
+
 •	Video – Camunda - xxxx
+
 •	Link to documentation example: CSV changes, Email received   - xxxx
 
