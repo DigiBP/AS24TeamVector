@@ -161,10 +161,10 @@ After this decision support in the form of instruction for what to do next, ther
 The scope of this project has been adjusted during the course of the collaborative coaching to tackle the ideal processes and to provide the optimal and relevant solutions. To allow for better clarification and as it is not directly relevant for the given process optimization, the veterinarian’s administration process and the narcotic’s team verification process are minimally represented, with focus on only the relevant aspects- and are visualized as “out of the scope”. They are considered as a “customer” of the in-house pharmacy, where the optimization process is performed. 
 
 ### Overview of full TO-BE Process 
-![Out of SCOPE](https://github.com/user-attachments/assets/b0708eea-bf6f-4dc2-a0d6-f7cb6c1bfec4)
-![upper_tobe](https://github.com/user-attachments/assets/0ac14820-f457-49f4-9add-b4fdcecebfea)
-![lower_tobe](https://github.com/user-attachments/assets/5791359d-ed9e-4826-a836-3cf055912048)
+ ![Screenshot from 2024-12-19 08-43-54](https://github.com/user-attachments/assets/163fe752-840a-4019-9e74-b4d09389c4a7)
+![Screenshot from 2024-12-19 08-44-44](https://github.com/user-attachments/assets/f6f2b120-fe74-4df1-b718-76f41989c63e)
 
+![Screenshot from 2024-12-19 08-54-12](https://github.com/user-attachments/assets/02f784cb-6d7d-4b2e-ae1f-01292cac6ae4)
 
 ## Chatbot/LLM 
 -  Please see these links for a brief [explanation](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Documentation%20-%20Chatbot%20Adventures.pptx) and [video](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Chatbot_test.mp4) for more information on this sub-project 
@@ -219,7 +219,7 @@ Videos:
 
 •	Video – to be Route 1-4 (tokens)  - [1](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Route%201%20tokens.mp4), [2](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Route%202%20tokens.mp4), [3](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Route%203%20tokens.mp4), [(4)](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Route%204%20tokens.mp4), [5](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Route%205%20tokens.mp4) 
 
-•	Video – Camunda - xxxx
+•	Video – Camunda - https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/CamundaScreen-Recording%20(1).mp4
 
 •	Link to documentation example: CSV changes, Email received   - xxxx
 
