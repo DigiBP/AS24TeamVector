@@ -66,7 +66,7 @@ In the context of the previously discussed issues and limitations in the narcoti
 The vision is to ultimately aid in preventing misuse and to increase efficiency for the specialized veterinary staff- allowing a greater focus on patient care. Moreover, the implementation of automated alternative supports the team in providing the optimal and empathetic care that each animal patient requires. 
 
 
-## AS-IS Process 🔒💊📦
+## AS-IS Process 🔒💊📦🚫📄
  - https://github.com/DigiBP/AS24TeamVector/blob/main/AS-IS_process.bpmn 
    
 In the veterinary clinic, there are two safes to store narcotics. The physical location of the safes are very strictly regulated in terms of access, and only limited staff have the rights and possibility to open the safes where the narcotics are stored. A small safe stores the narcotics that can be provided to patients. Additionally, a larger safe, which is only accessible to the team managing narcotics supply, is available to stock up the small safe if needed. This strict dual system provides an additional safe-guard for prevention of narcotics misuse. 
@@ -173,6 +173,17 @@ The scope of this project has been adjusted during the course of the collaborati
 ### Pilot project  💻👩‍⚕️👨‍⚕️🦠💉🩺🏥🚑🩹
  This is currently seen as a pilot project, with possible implementation on a wider scope. This "to-be" workflow introduces a systematic and automated approach to managing the supply chain for narcotics, with automatic daily triggers and inventory evaluations at predefined thresholds. With the designated routes, complexity in the management is broken down and transferring medications between safes and reordering from external pharmacies when stock is insufficient is made easier. Additionally, addressing scenarios like shortages in the big safe or alternative medication suggestions when reorders are unavailable is crucial. 
 Expansion to the verification process can be easily imagined and would be an interesting implementation for a future project. While it would bring certain novel complexities (clinical aspects, complexity in administration and data collection), this could likely be nicely digitalized and additionally integrated into the digitalization of the narcotics workflow in a veterinary clinic, with additional value gained. 
+
+
+
+## Conclusions 💻📦📈💊⏳🌟🩺🛠️
+
+The current process (As-Is) for managing narcotics in the veterinary clinic is entirely manual, paper-based, and resource-intensive. Tasks like inventory tracking, validation, and reordering are prone to human error and inefficiencies, with staff spending considerable time on administrative duties instead of patient care. The proposed "to-be" process introduces automation and digitalization, including inventory tracking, threshold-based stock management, and automated reordering workflows. Key improvements include APIs for inventory updates and detection of medication short-passes, decision support systems for alternative medications, and streamlined communication between stakeholders. It solves problems particularily within the scope of the supply chain, and the digitalization of this process helps to both 
+enhanced efficiency and reduced paperwork, as well as to minimized errors. This will result in significant savings, as well as better regulatoy/legal compliance and patient care. 
+
+
+![Happy Dog](https://github.com/user-attachments/assets/d32849a8-1ca5-471d-9b6f-e37762c8c19e)
+
 
 
 ## Technologies 🔄⚙️📈📧🛠️
