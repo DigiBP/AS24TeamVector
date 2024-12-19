@@ -156,13 +156,11 @@ A service is implemented (API call, with an internally created API) to check if 
 
 After this decision support in the form of instruction for what to do next, there will be a short latency until the order arrives. Once it has arrived, the purchasing team confirms the order, which then leads to an update in inventory of big safe inventory stock CSV file and an email to the narcotics team. 
 
-# Full Process - Nicely 
-
 ### Out of scope processes 
 
 The scope of this project has been adjusted during the course of the collaborative coaching to tackle the ideal processes and to provide the optimal and relevant solutions. To allow for better clarification and as it is not directly relevant for the given process optimization, the veterinarian’s administration process and the narcotic’s team verification process are minimally represented, with focus on only the relevant aspects- and are visualized as “out of the scope”. They are considered as a “customer” of the in-house pharmacy, where the optimization process is performed. 
 
-
+### Overview of full TO-BE Process 
 ![Out of SCOPE](https://github.com/user-attachments/assets/b0708eea-bf6f-4dc2-a0d6-f7cb6c1bfec4)
 ![upper_tobe](https://github.com/user-attachments/assets/0ac14820-f457-49f4-9add-b4fdcecebfea)
 ![lower_tobe](https://github.com/user-attachments/assets/5791359d-ed9e-4826-a836-3cf055912048)
