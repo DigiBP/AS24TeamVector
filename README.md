@@ -319,5 +319,5 @@ Videos:
 
 •	Video – Camunda - https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/CamundaScreen-Recording%20(1).mp4
 
-•	Link to example: [CSV changes](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/CSV%20ss.PNG), [Email received](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Vector_order_arrival.jpeg)   
+•	Link to example: [CSV changes](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/CSV%20ss.PNG), [Email received](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Vector_order_arrival.jpeg), [Email2 recieved ](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Vector_insufficient.jpeg)
 
