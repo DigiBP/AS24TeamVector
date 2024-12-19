@@ -217,6 +217,79 @@ enhanced efficiency and reduced paperwork, as well as to minimized errors. This 
    
 2.	Open Camunda Tasklist ([martinlab.science](https://digibp.engine.martinlab.science/camunda/app/tasklist/default/#/?searchQuery=%5B%5D&filter=f0945b62-643a-11ef-8ae6-fa163ee583d0&sorting=%5B%7B%22sortBy%22:%22created%22,%22sortOrder%22:%22desc%22%7D%5D)), username: mi24vector and password: password and follow the processes (see video links below) 
 
+## API Endpoints
+1. Retrieve Inventory
+- Route: /get_inventory (GET)
+- Input parameters: 
+    - file_path: file path of either big safe or small safe
+- Purpose: Return full inventory list, either of big or small safe, depending on input parameter.
+- Action: Reads inventory of big or small save and returns it as a JSON object.
+- Response: Full inventory list of specified safe.
+
+2. Update Inventory
+- Route: /update_inventory (POST)
+- Input parameters: 
+    - file_path: file path of either big safe or small safe
+    - Name: Name of medication that should be updated
+    - operation: add if something should be added to the safe, remove if something should be removed
+    - big_safe: True if it is for the big safe, default is false
+    - amount: how much should be added or removed
+- Purpose: Update big or small safe by removing or adding items
+- Action: 
+    - Current inventory list is loaded
+    - If the operation is 'add', the safe is updated by either the specified amount, or by 2 times the amount that is specified in the inventory list.
+    - If the operation is 'remove' either the specified amount or the difference to 0 is removed from the list.
+- Response: Full updated inventory list of specified safe.
+
+3. Evaluate Medications
+- Route: /evaluate-medications (POST)
+- Input parameters: 
+    - file_path: file path of either big safe or small safe
+- Purpose: Determine what should be reordered for the big safe or what should be restocked in the small safe.
+- Action: 
+    - Read current Inventory List based on filename
+    - Read threshhold based on filename
+    - filter items in Inventory list for which the current stock is under the threshold.
+- Response: JSON object "orderItem" which contains a list of all narcotics that should be reordered/restocked.
+
+4. Check shortage
+- Route: /shortage (POST)
+- Input parameters: 
+    - narcotic: Name of the narcotic that should be controlled
+- Purpose: Simulation of a service that tells you whether there is a shortage for an item or whether it is available for reorder.
+- Action: 
+    - Check narcotic name for validity
+    - Randomly determine whether there is a shortage or not, with a 20% chance of there being a shortage
+- Response: JSON containing the following fields:
+    - narcotic: name of the narcotic
+    - shortage: true or false, depending on whether there is a shortage or not
+    - message: "There is (not) currently a shortage of the narcotic"
+
+5. Send E-Mail
+- Route: /send-email (POST)
+- Input parameters: 
+    - to_email: Receiver E-Mail address
+    - Subject: subject of the E-Mail message
+    - Body: text of the E-Mail message
+    - from_email: Sender E-Mail Address
+- Purpose: Send an E-Mail
+- Action: 
+    - Check if all mandatory fields are available
+    - Create a MIMEMultipart object, containing the from, to, subject and content of the E-Mail
+    - Send E-Mail using smtplib.SMTP and using our team's E-Mail account
+- Response: JSON containing either status success or status error 
+
+6. Check refill availability in Big Safe
+- Route: /check_refill_availability (POST)
+- Input parameters: 
+    - orderItem: List of narcotics for which availability should be checked
+    - big_safe_file: path of the big safe csv file
+- Purpose: Check whether the items that should be restocked in the small safe are available in the big safe.
+- Action: 
+    - Read big safe inventory and make sure it's valid
+    - for each narcotic in orderItem list check that we have twice the amount in the big safe that is specified in the small safe Threshold definition.
+    - If that is not the case return the availability and the required amount
+- Response: List of all the unavailable narcotics found, including required or available amount, or an empty string if everything is available.   
 
 ## Links 🔗
 
