@@ -149,10 +149,14 @@ A service is implemented (API call, with an internally created API) to check if 
 
 2.	If the medication is unavailable for order, alternatives are suggested. This includes the name, the ingredient and formulation as well as the producing company, which are based on careful selection by veterinary staff and inbuilt into the logic. Then a manual confirmation is required (i.e. the order would then be sent along with the license - required for the purchase of narcotic medications - per email).   
 
-# DMN 
+
+![Overview](https://github.com/user-attachments/assets/13428d49-cccf-47d5-bc8d-74e9fa223f32)
+
+![DMN](https://github.com/user-attachments/assets/7b029152-336b-440a-9e6b-6346835a6085)
 
 After this decision support in the form of instruction for what to do next, there will be a short latency until the order arrives. Once it has arrived, the purchasing team confirms the order, which then leads to an update in inventory of big safe inventory stock CSV file and an email to the narcotics team. 
 
+# Full Process - Nicely 
 
 ### Out of scope processes 
 
