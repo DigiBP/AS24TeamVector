@@ -182,7 +182,7 @@ The scope of this project has been adjusted during the course of the collaborati
 Full Overview: 
 ![Screenshot from 2024-12-19 08-54-12](https://github.com/user-attachments/assets/02f784cb-6d7d-4b2e-ae1f-01292cac6ae4)
 
-## Chatbot/LLM 
+### Chatbot/LLM 
 -  Please see these links for a brief [explanation](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Documentation%20-%20Chatbot%20Adventures.pptx) and [video](https://github.com/DigiBP/AS24TeamVector/blob/main/presentation%20and%20documentation/Chatbot_test.mp4) for more information on this sub-project 
 
 
